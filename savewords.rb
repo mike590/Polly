@@ -15,8 +15,7 @@ start = Time.new
 def only_con?(str)
   cons = true
   arr = str.chars
-  base = "əēīȯᵊiaüāeäōu"
-  weirdo = "u̇"
+  base = "əēīȯᵊiaüāeäōuœ"
   arr.each do |let|
     if base.include?(let)
       cons = false
@@ -42,17 +41,17 @@ def push_word(node, index)
   exclude_word = false
   temp[:pron] = []
   temp_arr.each do |pron|
-    pron_arr = pron.gsub(";", "").split(" ")
+    pron_arr = pron.gsub(";", "").gsub("u̇", "u").gsub("t͟h", "~").gsub("k͟", "+").split(" ")
     arr_usable = false
     pron_arr.each do |subpron|
       if exclude_pron?(subpron)
       else
         arr_usable = true
         if subpron.include?("(")
-          with = subpron.gsub("(", "").gsub(")", "")
-          without = subpron.gsub(/\(.+\)/, "")
-          temp[:pron].push(with.strip) unless with == ""
-          temp[:pron].push(without.strip) unless without == ""
+          with = subpron.gsub("(", "").gsub(")", "").strip
+          without = subpron.gsub(/\(.+\)/, "").strip
+          temp[:pron].push(with) unless with == ""
+          temp[:pron].push(without) unless without == ""
         else
         temp[:pron].push(subpron.strip)
         end

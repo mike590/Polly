@@ -1,5 +1,10 @@
 Polly
 
+Note on Special Characters:
+  Underlined th will be represented with ~
+  Underlined k will be represented with +
+  A u with a dot over it will be represented by u
+
 Pollysyllabic Rhyme Matcher
 
 Parse all the words in the dictionary, getting the words coupled with their pronunciation symbols.
