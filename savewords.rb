@@ -9,13 +9,81 @@ f = File.read("testwords.json")
 # Create array of 5000 most commonly used words
 word_arr = JSON.parse(f)
 # Create array to push word objects into
-list = []
+@list = []
 start = Time.new
 
-# Iterate through the word_arr, calling the dictionary api for each word to load it and its pronunciation into the list variablr
-10.times do |count|
+def only_con?(str)
+  cons = true
+  arr = str.chars
+  base = "əēīȯᵊiaüāeäōu"
+  weirdo = "u̇"
+  arr.each do |let|
+    if base.include?(let)
+      cons = false
+    end
+  end
+  return cons
+end
 
-  api_response = Nokogiri::XML(HTTParty.get("http://www.dictionaryapi.com/api/v1/references/collegiate/xml/?key=0f3925c0-a95a-47af-b669-07e949857ca6"))
+def exclude_pron?(str)
+  exclude = false
+  exclude = true if str[0] == "-"
+  exclude = true if str[-1] == "-"
+  exclude = true if str.include?"÷"
+  exclude = true if only_con?(str)
+  return exclude
+end
+
+def push_word(node, index)
+  temp = {}
+  counter = 0
+  temp[:word] = node.css(["ew", "if"][index])[0].text.gsub("*", "").downcase
+  temp_arr = node.css("pr")[0].text.split(", ")
+  exclude_word = false
+  temp[:pron] = []
+  temp_arr.each do |pron|
+    pron_arr = pron.gsub(";", "").split(" ")
+    arr_usable = false
+    pron_arr.each do |subpron|
+      if exclude_pron?(subpron)
+      else
+        arr_usable = true
+        if subpron.include?("(")
+          with = subpron.gsub("(", "").gsub(")", "")
+          without = subpron.gsub(/\(.+\)/, "")
+          temp[:pron].push(with.strip) unless with == ""
+          temp[:pron].push(without.strip) unless without == ""
+        else
+        temp[:pron].push(subpron.strip)
+        end
+      end
+    end
+    counter += 1 if arr_usable == false
+    
+  end
+  exclude_word = true if counter == temp_arr.length
+  if !exclude_word
+    new_word = true
+    @list.each_with_index do |hash, index|
+      if hash[:word] == temp[:word]
+        new_word = false
+        @update_word = hash
+        @update_word_index = index
+      end
+    end
+    if new_word == true
+      @list.push(temp)
+    else
+      new_pron_list = (@update_word[:pron] + temp[:pron]).uniq
+      @list[@update_word_index][:pron] = new_pron_list
+    end
+  end
+end
+binding.pry
+# Iterate through the word_arr, calling the dictionary api for each word to load it and its pronunciation into the list variablr
+750.times do |count|
+
+  api_response = Nokogiri::XML(HTTParty.get("http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word_arr[0] + "?key=0f3925c0-a95a-47af-b669-07e949857ca6"))
 
   # Iterate through the multiple entries for each word
   api_response.css("entry").each do |node|
@@ -28,19 +96,8 @@ start = Time.new
 
       # Put the primary pr tag in the list, getting the word name by <ew> tag
       # The pr tag is split into an array, as there are mulitple ways to form the pronunciation using various symbols
-      temp = {}
-      temp[:word] = node.css("ew")[0].text
-      # Use .strip on each element in the array, then use .gsub(/\A\p{Space}*/, '') to detect @nbsp in the last element
-      temp_arr = node.css("pr")[0].text.split(", ")
-      # CHECK FOR ONE ELEMENT ARRAYS THAT BEGIN OR END IN DASHES OR ONLY HAVE CONSONANTS
-      temp_arr.each do |pron|
-
-      end
-      temp[:pron] = []
-
-      temp[:pron] = node.css("pr")[0].text.split(", ")
-      list.push(temp)
-      puts "Added #{}"
+      push_word(node, 0) 
+     
 
       # If there are secondary entries, they will be within <in> tags
       if !node.css("in").empty?
@@ -50,11 +107,7 @@ start = Time.new
 
           # If the it tag contains a pr tag, grab the pr, as well as the word by using the <if> tag
           if !xtra.css("pr").empty?
-            temp = {}
-            temp[:word] = xtra.css("if")[0].text
-            # Use .strip on each element in the array, then use .gsub(/\A\p{Space}*/, '') to detect @nbsp in the last element
-            temp[:pron] = xtra.css("pr")[0].text.split(", ")
-            list.push(temp)
+            push_word(node, 1)
           end
         end
       end
@@ -62,11 +115,18 @@ start = Time.new
     end
   
   end
-
+  puts "#{count}: #{(Time.new - start)}"
+  word_arr.delete_at(0)
 end
 
 puts Time.new - start
 binding.pry
+
+current_state = {list: @list, words_left: word_arr}
+
+f = File.open("firstparse.json", "w") do |k|
+  k.write(current_state.to_json)
+end
 
 # Exlclusion Criteria:
 
@@ -92,7 +152,7 @@ binding.pry
 
 #   parentheses indicate the enclosed sybmols are present in one pronunciation, but 
 #     not another. Therefore, when a pron includes (), it must be logged twice, once with
-#     the enclosed symbols, once without, neither with parentheses
+#     the enclosed symbols and no parentheses, once without symbols or parentheses
 #       CHECK: Is it possible for there to be two sets of ()? If so, need more combinations 
 #         of copies
 
