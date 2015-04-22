@@ -27,7 +27,11 @@ end
 def exclude_pron?(str)
   exclude = false
   exclude = true if str[0] == "-"
+  exclude = true if str[0] == "ˈ" && str[1] == "-"
+  exclude = true if str[0] == "ˌ" && str[1] == "-"
   exclude = true if str[-1] == "-"
+  exclude = true if str[-1] == "ˈ" && str[-2] == "-"
+  exclude = true if str[-1] == "ˌ" && str[-2] == "-"
   exclude = true if str.include?"÷"
   exclude = true if only_con?(str)
   return exclude
