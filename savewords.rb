@@ -5,9 +5,9 @@ require 'json'
 
 # http://www.merriam-webster.com/help/MWOL%20Pronunciation%20Guide.pdf
 
-f = File.read("testwords.json")
+f = File.read("firstparsecorrected.json")
 # Create array of 5000 most commonly used words
-word_arr = JSON.parse(f)
+word_arr = JSON.parse(f)["words_left"]
 # Create array to push word objects into
 @list = []
 start = Time.new
@@ -124,10 +124,9 @@ end
 
 puts Time.new - start
 binding.pry
-
 current_state = {list: @list, words_left: word_arr}
 
-f = File.open("firstparse.json", "w") do |k|
+f = File.open("secondparse.json", "w") do |k|
   k.write(current_state.to_json)
 end
 
