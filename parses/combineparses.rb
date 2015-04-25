@@ -1,10 +1,10 @@
 require 'json'
 require 'pry'
 
-f = File.read("firstparsecorrected.json")
+f = File.read("parses/secondparsecombined.json")
 first_list = JSON.parse(f)["list"]
 
-f = File.read("secondparse.json")
+f = File.read("parses/thirdparseraw.json")
 second_list = JSON.parse(f)["list"]
 
 comb_list = []
@@ -38,12 +38,12 @@ def get(str, arr)
   return word
 end
 
-u = File.read("firstparsecorrected.json")
-words_left = JSON.parse(u)["list"]
+u = File.read("parses/thirdparseraw.json")
+words_left = JSON.parse(u)["words_left"]
 
 current_state = {list: comb_list, words_left: words_left}
 
-foo = File.open("secondparsecombined.json", "w") do |k|
+foo = File.open("parses/thirdparsecombined.json", "w") do |k|
   k.write(current_state.to_json)
 end
 

@@ -1,5 +1,3 @@
-"bdfghk+~lmnŋⁿrʳpstvqyzˈˌ"
-
 [
   {pron: "ˈi", ex: "triple"},
   {pron: "ˌi", ex: "hospital"},

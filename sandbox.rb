@@ -39,7 +39,7 @@ test = {}
       accent = "none"
       front = true
       syls.each do |syl|
-        if syl.include?("i#{con}")
+        if syl.include?("a#{con}")
           use_pron = true 
           accent = "high" if syl[0] == "ˈ"
           accent = "low" if syl[0] == "ˌ"
@@ -60,7 +60,7 @@ endings = {"high" => [], "low" => [], "none" => []}
     use_pron = false
     accent = "none"
     syls.each do |syl|
-      if syl[-1] == "i"
+      if syl[-1] == "a"
         use_pron = true 
         accent = "high" if syl[0] == "ˈ"
         accent = "low" if syl[0] == "ˌ"
