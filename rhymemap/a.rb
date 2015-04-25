@@ -1,5 +1,3 @@
-"bdfghk+~lmnŋⁿrʳpstvqyzˈˌ"
-
 [
   {pron: "ˈab", ex: "grab"},
   {pron: "ˈad", ex: "glad"},
@@ -8,7 +6,20 @@
   {pron: "ˈag", ex: "bag"},
   {pron: "ˈak", ex: "track"},
   {pron: "ˌak", ex: "impact"},
-  {pron: "ak", ex: "activity"}
+  {pron: "ak", ex: "activity"},
+  {pron: "ˈav", ex: "have"},
+  {pron: "ˌav", ex: "must-have"},
+  {pron: "ˌaz", ex: "as"},
+  {pron: "az", ex: "as"}
+]
+
+[
+  {pron: "ˈash", ex: "flash"}
+]
+
+[
+  {pron: "ˈas", ex: "class"},
+  {pron: "ˌas", ex: "mass-produce"}
 ]
 
 [
@@ -30,5 +41,18 @@
 ]
 
 [
-  {pron: "ˈants", ex: "chance"}
+  {pron: "ˈants", ex: "chance"},
+  {pron: "ˌants", ex: "country-dance"}
 ]
+
+[
+  {pron: "ˈaŋ", ex: "fang"},
+  {pron: "ˌaŋ", ex: "press-gang"}
+]
+
+[
+  {pron: "ˈap", ex: "lap"},
+  {pron: "ˈat", ex: "bat"},
+  {pron: "ˌat", ex: "democrat"}
+]
+

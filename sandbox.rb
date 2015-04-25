@@ -4,7 +4,7 @@ require 'json'
 f = File.read('parses/secondparsecombined.json')
 doc = JSON.parse(f)
 @list = doc["list"]
-@vowels = "əēīȯᵊiaüāeäōuœ"
+@vowels = "əēīȯᵊiaüāeäōuœ" # then deal with syllables that have multiple vowels
 @consonants = "bdfghk+~lmnŋⁿrʳpstvqyz" # missing superscript y
 @con_combos = ["ch", "hw", "sh", "th", "zh"] 
 @hybrids = ["ər", "är", "au", "er", "ir", "ȯi", "ȯr", "ur", 'ȯi']
@@ -39,7 +39,7 @@ test = {}
       accent = "none"
       front = true
       syls.each do |syl|
-        if syl.include?("a#{con}")
+        if syl.include?("e#{con}")
           use_pron = true 
           accent = "high" if syl[0] == "ˈ"
           accent = "low" if syl[0] == "ˌ"
@@ -60,7 +60,7 @@ endings = {"high" => [], "low" => [], "none" => []}
     use_pron = false
     accent = "none"
     syls.each do |syl|
-      if syl[-1] == "a"
+      if syl[-1] == "e"
         use_pron = true 
         accent = "high" if syl[0] == "ˈ"
         accent = "low" if syl[0] == "ˌ"
