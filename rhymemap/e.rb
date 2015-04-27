@@ -1,5 +1,3 @@
-"bdfghk+~lmnŋⁿrʳpstvqyzˈˌ"
-
 [
   {pron: "ˈe", ex: "better"},
   {pron: "ˌe", ex: "generation"},

@@ -1,7 +1,7 @@
 require 'pry'
 require 'json'
 
-f = File.read('parses/secondparsecombined.json')
+f = File.read('parses/thirdparsecorrect.json')
 doc = JSON.parse(f)
 @list = doc["list"]
 @vowels = "əēīȯᵊiaüāeäōuœ" # then deal with syllables that have multiple vowels
@@ -39,7 +39,7 @@ test = {}
       accent = "none"
       front = true
       syls.each do |syl|
-        if syl.include?("e#{con}")
+        if syl.include?("œ#{con}")
           use_pron = true 
           accent = "high" if syl[0] == "ˈ"
           accent = "low" if syl[0] == "ˌ"
@@ -60,7 +60,7 @@ endings = {"high" => [], "low" => [], "none" => []}
     use_pron = false
     accent = "none"
     syls.each do |syl|
-      if syl[-1] == "e"
+      if syl[-1] == "œ"
         use_pron = true 
         accent = "high" if syl[0] == "ˈ"
         accent = "low" if syl[0] == "ˌ"
@@ -71,6 +71,22 @@ endings = {"high" => [], "low" => [], "none" => []}
 end  
 
 # Check for multiple vowels on one syllable 
-
-
 binding.pry
+
+# Use to replace underlined th with ~ and u̇ with u
+# new_list = []
+# @list.each do |obj|
+#   temp = {}
+#   temp["word"] = obj["word"]
+#   temp['pron'] = []
+#   obj['pron'].each do |pron|
+#     temp["pron"].push(pron.gsub("t͟h", "~").gsub("u̇", "u"))
+#   end
+#   new_list.push(temp)
+# end
+
+# current_state = {"list" => new_list, "words_left" => doc["words_left"]}
+
+# l = File.open("parses/thirdparsecorrect.json", "w") do |k|
+#   k.write(current_state.to_json)
+# end
