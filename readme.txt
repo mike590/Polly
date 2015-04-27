@@ -1,5 +1,17 @@
 Polly
 
+To Do:
+After mapping all single vowel-to-consonants combination, search for syllables with multiple 
+vowels.
+Make alternative rhyme-map algorithm: 
+1. Selects the pronunciation symbols from the selected syllables
+2. Finds the vowel and the following consonant/combo of consonants
+3. Searches through other words for exact matches.
+Less durable, but requires no mapping. May need to use as placeholder if 
+manual rhyme mapping doesn't come out well.
+
+
+
 Note on Special Characters:
   Underlined th will be represented with ~
   Underlined k will be represented with +
