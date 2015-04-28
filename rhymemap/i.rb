@@ -53,7 +53,7 @@
 
 [
   {pron: "ˈith", ex: "with"},
-  {pron: "ˈiv", ex: "live"},
+  {pron: "ˌith", ex: "live"},
   {pron: "ˌiv", ex: "give-and-go"},
   {pron: "iv", ex: "active"},
   {pron: "ˌiz", ex: "his"},

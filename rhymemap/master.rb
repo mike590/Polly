@@ -328,55 +328,55 @@ test = {
     prim: ["ˈī", "ˌī", "ī"], sec: [99, 101]
     },
   110 => {
-    prim: ["en"], sec: []
+    prim: ["ˈid", "ˌid"], sec: [111, 112]
     },
   111 => {
-    prim: ["əŋ"], sec: []
+    prim: ["ˈig", "ig" ], sec: [110, 112]
     },
   112 => {
-    prim: ["ek"], sec: []
+    prim: ["ˈik", "ik"], sec: [110, 111, 113, 126]
     },
   113 => {
-    prim: ["əŋ"], sec: []
+    prim: ["ˈif", "ˌif"], sec: [112, 114]
     },
   114 => {
-    prim: ["ek"], sec: []
+    prim: ["ˈip", "ˌip"], sec: [113, 126]
     },
   115 => {
-    prim: ["oint"], sec: []
+    prim: ["ˈiks", "ˌiks", "iks"], sec: [116]
     },
   116 => {
-    prim: ["oil"], sec: []
+    prim: ["ˈis", "ˌis", "is"], sec: [115]
     },
   117 => {
-    prim: ["oi"], sec: []
+    prim: ["ˈild"], sec: [118, 119]
     },
   118 => {
-    prim: ["ent"], sec: []
+    prim: ["ˈilm"], sec: [117, 119]
     },
   119 => {
-    prim: ["ois"], sec: []
+    prim: ["ˈil", "ˌil"], sec: [117, 118]
     },
   120 => {
-    prim: ["et"], sec: []
+    prim: ["ˈim", "im", "ˈin", "ˌin", "in"], sec: []
     },
   121 => {
-    prim: ["ents"], sec: []
+    prim: ["ˈiŋ", "ˌiŋ", "iŋ"], sec: []
     },
   122 => {
-    prim: ["eb"], sec: []
+    prim: ["ˈir", "ˌir"], sec: []
     },
   123 => {
-    prim: ["ed"], sec: []
+    prim: ["ˈith", "ˌith", "ˌiv", "iv"], sec: [124]
     },
   124 => {
-    prim: ["eg"], sec: []
+      prim: ["ˌiz", "iz", "ˈiz"], sec: [123]
     },
   125 => {
-    prim: ["em"], sec: []
+    prim: ["ˈit", "ˌit", "it"], sec: []
     },
   126 => {
-    prim: ["en"], sec: []
+    prim: ["ˈi", "ˌi", "i"], sec: [112, 114]
     },
   127 => {
     prim: ["əŋ"], sec: []
