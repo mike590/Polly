@@ -29,5 +29,5 @@
 ]
 
 [
- {pron: "ˈīr", ex: "fyre"} 
+ {pron: "ˈīr", ex: "fire"} 
 ]

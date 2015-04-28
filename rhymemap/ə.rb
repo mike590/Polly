@@ -7,7 +7,7 @@
   {pron: "əm", ex: "per-diem"},
   {pron: "ˈən", ex: "run"},
   {pron: "əŋ", ex: "young"},
-  {pron: "ˌək", ex: "product"},
+  {pron: "", ex: "product"},
   {pron: "ˈəp", ex: "up"},
   {pron: "ˈwən", ex: "won"},
   {pron: "ˈəv", ex: "glove"},

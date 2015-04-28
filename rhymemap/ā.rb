@@ -31,11 +31,13 @@
   {pron: "ˌān", ex: "free-range"}
 ]
 
-[
+
 
 [
   {pron: "ˈāsh", ex: "dash"}
 ]
+
+[
   {pron: "ˈās", ex: "face"},
   {pron: "ˌās", ex: "face-first"}
 ]

@@ -1,8 +1,5 @@
 [
-  {pron: "ēb", ex: "sun-greb"}
-]
-
-[
+  {pron: "ēb", ex: "sun-greb"},
   {pron: "ˈēd", ex: "seed"},
   {pron: "ˌēd", ex: "ten-speed"},
   {pron: "ˈē~", ex: "breathe"},

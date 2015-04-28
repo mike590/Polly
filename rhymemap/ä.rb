@@ -36,9 +36,5 @@
 ]
 
 [
-  {pron: "ˈäth", ex: "path"}
-]
-
-[
   {pron: "ˈä~", ex: "father"}
 ]

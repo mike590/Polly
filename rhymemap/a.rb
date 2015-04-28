@@ -18,6 +18,10 @@
 ]
 
 [
+  {pron: "ˈath", ex: "path"}
+]
+
+[
   {pron: "ˈas", ex: "class"},
   {pron: "ˌas", ex: "mass-produce"}
 ]
@@ -35,8 +39,8 @@
 [
   {pron: "ˈam", ex: "gram"},
   {pron: "ˌam", ex: "program"},
-  {pron: "a", ex: "campaign"},
-  {pron: "ˈa", ex: "fan"},
+  {pron: "am", ex: "campaign"},
+  {pron: "ˈan", ex: "fan"},
   {pron: "ˌan", ex: "anti-"}
 ]
 

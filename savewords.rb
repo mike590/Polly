@@ -5,12 +5,12 @@ require 'json'
 
 # http://www.merriam-webster.com/help/MWOL%20Pronunciation%20Guide.pdf
 
-f = File.read("parses/thirdparsecombined.json")
+f = File.read("parses/thirdparsecorrect.json")
 # Create array of 5000 most commonly used words
 word_arr = JSON.parse(f)["words_left"]
 # Create array to push word objects into
 @list = []
-start = Time.new
+
 
 def only_con?(str)
   cons = true
@@ -83,8 +83,9 @@ def push_word(node, index)
   end
 end
 binding.pry
+start = Time.new
 # Iterate through the word_arr, calling the dictionary api for each word to load it and its pronunciation into the list variablr
-750.times do |count|
+850.times do |count|
 
   api_response = Nokogiri::XML(HTTParty.get("http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word_arr[0] + "?key=0f3925c0-a95a-47af-b669-07e949857ca6"))
 
@@ -126,7 +127,7 @@ puts Time.new - start
 binding.pry
 current_state = {list: @list, words_left: word_arr}
 
-f = File.open("parses/thirdparseraw.json", "w") do |k|
+f = File.open("parses/fourthparseraw.json", "w") do |k|
   k.write(current_state.to_json)
 end
 
