@@ -379,34 +379,34 @@ test = {
     prim: ["ˈi", "ˌi", "i"], sec: [112, 114]
     },
   127 => {
-    prim: ["əŋ"], sec: []
+    prim: ["ˈōb", "ˈōd"], sec: [128, 134, 135]
     },
   128 => {
-    prim: ["ek"], sec: []
+    prim: ["ˈō~"], sec: [127, 134, 135]
     },
   129 => {
-    prim: ["əŋ"], sec: []
+    prim: ["ˈōl", "ˌōl"], sec: []
     },
   130 => {
-    prim: ["ek"], sec: []
+    prim: ["ˈōm", "ˈōn", "ˌōn"], sec: []
     },
   131 => {
-    prim: ["oint"], sec: []
+    prim: ["ˈōk"], sec: [132, 133]
     },
   132 => {
-    prim: ["oil"], sec: []
+    prim: ["ˈōp"], sec: [131, 133]
     },
   133 => {
-    prim: ["oi"], sec: []
+    prim: ["ˈōt", "ˌōt"], sec: [131, 132]
     },
   134 => {
-    prim: ["ent"], sec: []
+    prim: ["ˈōv"], sec: [135, 127, 128]
     },
   135 => {
-    prim: ["ois"], sec: []
+    prim: ["ˈōz"], sec: [134, 127, 128]
     },
   136 => {
-    prim: ["et"], sec: []
+    prim: ["ˈōst"], sec: []
     },
   137 => {
     prim: ["ents"], sec: []
