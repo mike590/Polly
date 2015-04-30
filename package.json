@@ -1,0 +1,25 @@
+{
+  "name": "Polly",
+  "version": "1.0.0",
+  "description": "Pollysyllabic Rhyme Finder",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mike590/Polly.git"
+  },
+  "keywords": [
+    "Polly"
+  ],
+  "author": "Michael Gherard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mike590/Polly/issues"
+  },
+  "homepage": "https://github.com/mike590/Polly",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}

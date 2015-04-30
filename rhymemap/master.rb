@@ -406,40 +406,40 @@ test = {
     prim: ["ˈōz"], sec: [134, 127, 128]
     },
   136 => {
-    prim: ["ˈōst"], sec: []
+    prim: ["ˈȯf", "ˌȯf"], sec: [135]
     },
   137 => {
-    prim: ["ents"], sec: []
+    prim: ["ˈȯg", "ˌȯg"], sec: [136]
     },
   138 => {
-    prim: ["eb"], sec: []
+    prim: ["ˈȯs", "ˌȯs", "ˈȯs"], sec: [139]
     },
   139 => {
-    prim: ["ed"], sec: []
+    prim: ["ˈȯls", "ˈȯlts"], sec: [138]
     },
   140 => {
-    prim: ["eg"], sec: []
+    prim: ["ˈȯk"], sec: []
     },
   141 => {
-    prim: ["em"], sec: []
+    prim: ["ˈȯl", "ˌȯl"], sec: []
     },
   142 => {
-    prim: ["en"], sec: []
+    prim: ["ˈȯt", "ˌȯt"], sec: []
     },
   143 => {
-    prim: ["əŋ"], sec: []
+    prim: ["ˈȯn", "ˌȯn"], sec: []
     },
   144 => {
-    prim: ["ek"], sec: []
+    prim: ["ˈȯŋ", "ˌȯŋ"], sec: []
     },
   145 => {
-    prim: ["əŋ"], sec: []
+    prim: ["ˈȯr", "ˌȯr", "ȯr"], sec: []
     },
   146 => {
-    prim: ["ek"], sec: []
+    prim: ["ˈȯ", "ˌȯ"], sec: [147]
     },
   147 => {
-    prim: ["oint"], sec: []
+    prim: ["ˈȯd"], sec: [146]
     },
   148 => {
     prim: ["oil"], sec: []
