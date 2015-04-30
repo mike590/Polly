@@ -1,7 +1,7 @@
 require 'pry'
 require 'json'
 # Load master rhymemap, contained in @test variable
-require './rhymemap/master.rb'
+require './rhymemap/stressfreemaster.rb'
 
 f = File.read('parses/fifthparsecombined.json')
 doc = JSON.parse(f)
@@ -31,6 +31,30 @@ def get(str)
   return word
 end
 
+@list.each do |word|
+  word["code"] = []
+  word["pron"].each do |pron|
+    syls = pron.split("-")
+    code_arr = []
+    # assoc_Arr is temporary. For now, allows to check that correct rhymes were set to the word
+    assoc_arr = []
+    syls.each do |syl|
+      catch :code_found do
+        @test.each do |k, v|
+          v[:prim].each do |rhyme|
+            if syl.include?(rhyme)
+              code_arr.push(k)
+              assoc_arr.push(rhyme)
+              throw :code_found
+            end
+          end
+        end
+      end
+    end
+    word["code"].push(code_arr)
+    word["code"].push(assoc_arr)
+  end
+end
 
 
 # Create hash with consonant keys, each key containg a list of prons that 
