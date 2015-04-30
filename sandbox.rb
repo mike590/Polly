@@ -1,7 +1,9 @@
 require 'pry'
 require 'json'
+# Load master rhymemap, contained in @test variable
+require './rhymemap/master.rb'
 
-f = File.read('parses/fourthparsecombined.json')
+f = File.read('parses/fifthparsecombined.json')
 doc = JSON.parse(f)
 @list = doc["list"]
 @vowels = "əēīȯᵊiaüāeäōuœ" # then deal with syllables that have multiple vowels
@@ -28,6 +30,8 @@ def get(str)
   end
   return word
 end
+
+
 
 # Create hash with consonant keys, each key containg a list of prons that 
 # have the selected vowel followed by consonant in the key

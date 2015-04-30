@@ -4,10 +4,6 @@
 ]
 
 [
-  {pron: "yu", ex: "unite"}
-]
-
-[
   {pron: "ˈau", ex: "tower"},
   {pron: "ˌau", ex: "somehow"},
   {pron: "ˈaud", ex: "proud"},
