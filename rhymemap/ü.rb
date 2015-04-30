@@ -2,7 +2,7 @@
   {pron: "ˈü", ex: "true"},
   {pron: "ˌü", ex: "thank-you"},
   {pron: "ü", ex: "issue"},
-  {pron: "ˈd", ex: "food"},
+  {pron: "ˈüd", ex: "food"},
   {pron: "ˌüd", ex: "attitude"},
   {pron: "ˈüf", ex: "roof"},
   {pron: "ˈüth", ex: "truth"},
@@ -12,13 +12,8 @@
   {pron: "ˌüs", ex: "produce"},
   {pron: "üs", ex: "produce"},
   {pron: "ˈüv", ex: "improve"},
-  {pron: "ˈüz", ex: "refuce"},
+  {pron: "ˈüz", ex: "refuse"},
   {pron: "üz", ex: "whose"}
-]
-
-
-[
-  {pron: "ˈüst", ex: "just"}
 ]
 
 [

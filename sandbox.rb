@@ -29,26 +29,54 @@ def get(str)
   return word
 end
 
-test = {"high" => [], "low" => [], "none" => []}
-@list.each do |obj|
-  obj["pron"].each do |pron|
-    syls = pron.split("-")
-    use_pron = false
-    accent = "none"
-    syls.each do |syl|
-      counter = 0
-      syl.chars do |let|
-        counter += 1 if @vowels.include?(let)
-      end
-      if counter > 1
-        use_pron = true 
-        accent = "high" if syl[0] == "ˈ"
-        accent = "low" if syl[0] == "ˌ"
-      end
-    end
-    test[accent].push("#{obj['word']}: #{pron}") if use_pron
-end
-end 
+# Create hash with consonant keys, each key containg a list of prons that 
+# have the selected vowel followed by consonant in the key
+# select_vowel = 'ü'
+# test = {}
+# @list.each do |obj|
+#   obj["pron"].each do |pron|
+#     @consonants.chars.each do |con|
+#       test[con] ||= {"high" => [], "low" => [], "none" => []}
+#       syls = pron.split("-")
+#       use_pron = false
+#       accent = "none"
+#       front = true
+#       syls.each do |syl|
+#         if syl.include?("#{select_vowel}#{con}")
+#           use_pron = true 
+#           accent = "high" if syl[0] == "ˈ"
+#           accent = "low" if syl[0] == "ˌ"
+#           front = false if syl[-1] != con
+#         end
+#       end
+#       if use_pron
+#         front ? test[con][accent].unshift("#{obj['word']}: #{pron}") : test[con][accent].push("#{obj['word']}: #{pron}") 
+#       end
+#     end
+#   end
+# end
+
+# Check for syllables with multiple vowels
+# test = {"high" => [], "low" => [], "none" => []}
+# @list.each do |obj|
+#   obj["pron"].each do |pron|
+#     syls = pron.split("-")
+#     use_pron = false
+#     accent = "none"
+#     syls.each do |syl|
+#       counter = 0
+#       syl.chars do |let|
+#         counter += 1 if @vowels.include?(let)
+#       end
+#       if counter > 1
+#         use_pron = true 
+#         accent = "high" if syl[0] == "ˈ"
+#         accent = "low" if syl[0] == "ˌ"
+#       end
+#     end
+#     test[accent].push("#{obj['word']}: #{pron}") if use_pron
+#   end
+# end 
 
 # endings = {"high" => [], "low" => [], "none" => []}
 # @list.each do |obj|
