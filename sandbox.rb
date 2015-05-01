@@ -31,6 +31,7 @@ def get(str)
   return word
 end
 
+# 
 @list.each do |word|
   word["code"] = []
   word["pron"].each do |pron|

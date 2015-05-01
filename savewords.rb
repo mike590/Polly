@@ -5,7 +5,7 @@ require 'json'
 
 # http://www.merriam-webster.com/help/MWOL%20Pronunciation%20Guide.pdf
 
-f = File.read("parses/fourthparsecombined.json")
+f = File.read("parses/fifthparsecombined.json")
 # Create array of 5000 most commonly used words
 word_arr = JSON.parse(f)["words_left"]
 # Create array to push word objects into
@@ -86,48 +86,50 @@ binding.pry
 start = Time.new
 # Iterate through the word_arr, calling the dictionary api for each word to load it and its pronunciation into the list variablr
 850.times do |count|
+  if !word_arr.empty?
 
-  api_response = Nokogiri::XML(HTTParty.get("http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word_arr[0] + "?key=0f3925c0-a95a-47af-b669-07e949857ca6"))
+    api_response = Nokogiri::XML(HTTParty.get("http://www.dictionaryapi.com/api/v1/references/collegiate/xml/" + word_arr[0] + "?key=0f3925c0-a95a-47af-b669-07e949857ca6"))
 
-  # Iterate through the multiple entries for each word
-  api_response.css("entry").each do |node|
+    # Iterate through the multiple entries for each word
+    api_response.css("entry").each do |node|
 
-    # Only look at entries that include a pronunciation tag (<pr>)
-    if !node.css("pr").empty?
+      # Only look at entries that include a pronunciation tag (<pr>)
+      if !node.css("pr").empty?
 
-      # Remove it tags, which are extra text in the middle of pr tags
-      node.css("it").remove
+        # Remove it tags, which are extra text in the middle of pr tags
+        node.css("it").remove
 
-      # Put the primary pr tag in the list, getting the word name by <ew> tag
-      # The pr tag is split into an array, as there are mulitple ways to form the pronunciation using various symbols
-      push_word(node, 0) 
-     
+        # Put the primary pr tag in the list, getting the word name by <ew> tag
+        # The pr tag is split into an array, as there are mulitple ways to form the pronunciation using various symbols
+        push_word(node, 0) 
+       
 
-      # If there are secondary entries, they will be within <in> tags
-      if !node.css("in").empty?
+        # If there are secondary entries, they will be within <in> tags
+        if !node.css("in").empty?
 
-        # Iterate through the it tags
-        node.css("in").each do |xtra|
+          # Iterate through the it tags
+          node.css("in").each do |xtra|
 
-          # If the it tag contains a pr tag, grab the pr, as well as the word by using the <if> tag
-          if !xtra.css("pr").empty?
-            push_word(node, 1)
+            # If the it tag contains a pr tag, grab the pr, as well as the word by using the <if> tag
+            if !xtra.css("pr").empty?
+              push_word(node, 1)
+            end
           end
         end
-      end
 
+      end
+    
     end
-  
+    puts "#{count}: #{(Time.new - start)}"
+    word_arr.delete_at(0)
   end
-  puts "#{count}: #{(Time.new - start)}"
-  word_arr.delete_at(0)
 end
 
 puts Time.new - start
 binding.pry
 current_state = {list: @list, words_left: word_arr}
 
-f = File.open("parses/fifthparseraw.json", "w") do |k|
+f = File.open("parses/sixthparseraw.json", "w") do |k|
   k.write(current_state.to_json)
 end
 
