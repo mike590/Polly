@@ -4,11 +4,12 @@ To Do:
 After mapping all single vowel-to-consonants combination, search for syllables with multiple 
 vowels.
 Make alternative rhyme-map algorithm: 
-1. Selects the pronunciation symbols from the selected syllables
-2. Finds the vowel and the following consonant/combo of consonants
-3. Searches through other words for exact matches.
-Less durable, but requires no mapping. May need to use as placeholder if 
-manual rhyme mapping doesn't come out well.
+  1. Selects the pronunciation symbols from the selected syllables
+  2. Finds the vowel and the following consonant/combo of consonants
+  3. Searches through other words for exact matches.
+  Less durable, but requires no mapping. May need to use as placeholder if 
+  manual rhyme mapping doesn't come out well.
+Explore how to use original master rhyme map (as opposed to stress free rhyme map) to include stresses in the codification.
 
 
 

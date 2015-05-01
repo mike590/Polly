@@ -37,7 +37,7 @@ end
   word["pron"].each do |pron|
     syls = pron.split("-")
     code_arr = []
-    # assoc_Arr is temporary. For now, allows to check that correct rhymes were set to the word
+    # assoc_arr is temporary. For now, allows to check that correct rhymes were set to the word
     assoc_arr = []
     syls.each do |syl|
       catch :code_found do
