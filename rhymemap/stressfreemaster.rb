@@ -1,5 +1,5 @@
 require "pry"
-@test = {
+@map = {
   0 => {
     prim: ["au", "au"], sec: []
     },

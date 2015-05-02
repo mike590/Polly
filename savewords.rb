@@ -82,7 +82,6 @@ def push_word(node, index)
     end
   end
 end
-binding.pry
 start = Time.new
 # Iterate through the word_arr, calling the dictionary api for each word to load it and its pronunciation into the list variablr
 850.times do |count|
@@ -126,7 +125,6 @@ start = Time.new
 end
 
 puts Time.new - start
-binding.pry
 current_state = {list: @list, words_left: word_arr}
 
 f = File.open("parses/sixthparseraw.json", "w") do |k|
