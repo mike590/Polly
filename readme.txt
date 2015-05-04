@@ -9,7 +9,7 @@ Make alternative rhyme-map algorithm:
   3. Searches through other words for exact matches.
   Less durable, but requires no mapping. May need to use as placeholder if 
   manual rhyme mapping doesn't come out well.
-Explore how to use original master rhyme map (as opposed to stress free rhyme map) to include stresses in the codification.
+Explore how to use original master rhyme map (as opposed to stress free rhyme map) to include stresses in the codification. NOTE: Upon checking rhymes, this is extremely important.
 
 
 
