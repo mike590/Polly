@@ -51,7 +51,57 @@ def rhyme(str, i = 0)
   return rhymes
 end
 
-# codify the list
+# Used to find all letters from vowel to end of syllable, unless multiple vowels present,
+# as well as stress
+def define_rhyme(pattern)
+  syls = pattern.split('-').reject{|s| s.empty? }
+  defined_rhymes = []
+  syls.each do |syl|
+    use = true
+    temp = ""
+    temp += "ˌ" if syl[0] == "ˌ"
+    temp += "ˈ" if syl[0] == "ˈ"
+    if syl.include?("oi")
+      ind = syl.index("oi")
+    elsif syl.include?("au")
+      ind = syl.index("au")
+    else
+      if !syl.scan(/[əēīȯᵊiaüāeäōuœ]/).empty?
+        ind = syl.index(syl.scan(/[əēīȯᵊiaüāeäōuœ]/)[0])
+      else
+        use = false
+      end
+    end
+    if use
+      temp += syl[ind..(syl.length - 1)]
+    else
+      temp = "skip"
+    end
+    defined_rhymes.push(temp)
+  end
+  return defined_rhymes.join("-")
+end
+
+def rhyme_exact(str, i=0)
+  match_word = get(str)
+  pattern = define_rhyme(match_word['pron'][i])
+  p_length = pattern.length
+  syl_count = pattern.split("-").length
+  rhymes = []
+  @list.each do |word|
+    catch :rhyme_found do
+      word['exacts'].each do |pron|
+        if pron != 'skip' && pron.split("-").length >= syl_count
+          rhymes.push(word['word']) if pron.index(pattern) == pron.length - p_length
+          throw :rhyme_found
+        end
+      end
+    end
+  end
+  return rhymes
+end
+
+# codify the list for rhyme(str)
 @list.each do |word|
   word["code"] = []
   word["pron"].each do |pron|
@@ -71,6 +121,15 @@ end
     end
     word["code"].push(code_arr.join("-"))
   end
+end
+
+# Replace al syllables with defined_rhymes (from above) for exact_rhyme(str)
+@list.each do |word|
+  temp = []
+  word["pron"].each do |pron|
+    temp.push(define_rhyme(pron))
+  end
+  word["exacts"] = temp
 end
 binding.pry
 
