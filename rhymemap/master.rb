@@ -1,5 +1,5 @@
 require "pry"
-# french, branch, conch, punch, world
+# french, branch, conch, punch, world, ȯz
 @test = {
   0 => {
     prim: ["ˈau", "ˌau"], sec: []

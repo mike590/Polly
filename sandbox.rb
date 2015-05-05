@@ -31,25 +31,25 @@ def get(str)
   return word
 end
 
-def rhyme(str, i = 0)
-  match_word = get(str)
-  pattern = match_word['code'][i]
-  rhymes = []
-  # For spaces within words
-  @list.each do |word|
-    word['code'].each_with_index do |code, ind|
-      if code.include?(pattern)
-        rhymes.push({word: word['word'], rhyme: word['pron'][ind]})
-      end
-    end
-  end
-  # How to match patterns with missing syls
-  # use regex scan to see if it includes rhyme
-  # replace missing syls with \d+, e.g. 12-\d+-\d+-86 would match [12-35-80-86]
-  # pass in '12-\d+-\d+-86' (single quotes important) to Regexp.new('12-\d+-\d+-86')
-  # then pass that to scan, it generates the for you
-  return rhymes
-end
+# def rhyme(str, i = 0)
+#   match_word = get(str)
+#   pattern = match_word['code'][i]
+#   rhymes = []
+#   # For spaces within words
+#   @list.each do |word|
+#     word['code'].each_with_index do |code, ind|
+#       if code.include?(pattern)
+#         rhymes.push({word: word['word'], rhyme: word['pron'][ind]})
+#       end
+#     end
+#   end
+#   # How to match patterns with missing syls
+#   # use regex scan to see if it includes rhyme
+#   # replace missing syls with \d+, e.g. 12-\d+-\d+-86 would match [12-35-80-86]
+#   # pass in '12-\d+-\d+-86' (single quotes important) to Regexp.new('12-\d+-\d+-86')
+#   # then pass that to scan, it generates the for you
+#   return rhymes
+# end
 
 # Used to find all letters from vowel to end of syllable, unless multiple vowels present,
 # as well as stress
@@ -81,19 +81,23 @@ def define_rhyme(pattern)
   end
   return defined_rhymes.join("-")
 end
-
-def rhyme_exact(str, i=0)
+# rhyme_exact(str)
+def rhyme(str)
   match_word = get(str)
-  pattern = define_rhyme(match_word['pron'][i])
-  p_length = pattern.length
-  syl_count = pattern.split("-").length
-  rhymes = []
-  @list.each do |word|
-    catch :rhyme_found do
-      word['exacts'].each do |pron|
-        if pron != 'skip' && pron.split("-").length >= syl_count
-          rhymes.push(word['word']) if pron.index(pattern) == pron.length - p_length
-          throw :rhyme_found
+  return "Word not in dictionary" if match_word == ""
+  rhymes = {}
+  match_word['pron'].each_with_index do |pat, i|
+    pattern = define_rhyme(pat)
+    p_length = pattern.length
+    syl_count = pattern.split("-").length
+    rhymes[i] = []
+    @list.each do |word|
+      catch :rhyme_found do
+        word['exacts'].each do |pron|
+          if pron != 'skip' && pron.split("-").length >= syl_count
+            rhymes[i].push(word['word']) if pron.index(pattern) == pron.length - p_length
+            throw :rhyme_found
+          end
         end
       end
     end
@@ -102,26 +106,26 @@ def rhyme_exact(str, i=0)
 end
 
 # codify the list for rhyme(str)
-@list.each do |word|
-  word["code"] = []
-  word["pron"].each do |pron|
-    syls = pron.split("-")
-    code_arr = []
-    syls.each do |syl|
-      catch :code_found do
-        @map.each do |k, v|
-          v[:prim].each do |rhyme|
-            if syl.include?(rhyme)
-              code_arr.push(k)
-              throw :code_found
-            end
-          end
-        end
-      end
-    end
-    word["code"].push(code_arr.join("-"))
-  end
-end
+# @list.each do |word|
+#   word["code"] = []
+#   word["pron"].each do |pron|
+#     syls = pron.split("-")
+#     code_arr = []
+#     syls.each do |syl|
+#       catch :code_found do
+#         @map.each do |k, v|
+#           v[:prim].each do |rhyme|
+#             if syl.include?(rhyme)
+#               code_arr.push(k)
+#               throw :code_found
+#             end
+#           end
+#         end
+#       end
+#     end
+#     word["code"].push(code_arr.join("-"))
+#   end
+# end
 
 # Replace al syllables with defined_rhymes (from above) for exact_rhyme(str)
 @list.each do |word|
