@@ -31,7 +31,7 @@ app.factory('rhymer', ["$http", function($http){
       pattern = '';
       rhymer.syls.forEach(function(el, ind, arr){
         if(el.use){
-          pattern += el.text;
+          pattern += el.exact;
         } else {
           pattern += '\\d+';
         }
