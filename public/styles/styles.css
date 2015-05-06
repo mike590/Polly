@@ -1,0 +1,32 @@
+#syl_select {
+  height: 30%;
+  width: 50%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+#syl_select ul {
+  height: 100%;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+#syl_select ul li {
+  height: 100%;
+  font-weight: bold;
+  display: inline;
+  margin: 5px 15px;
+  padding: 10px;
+}
+
+.use {
+  font: 50px arial;
+  color: blue;
+  border: solid blue 3px;
+}
+
+.dont {
+  font: 40px 'times new roman';
+  color: #A7ABA4;
+}

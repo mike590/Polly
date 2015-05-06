@@ -14,9 +14,6 @@ app.get('/', function(req, res){
 });
 
 app.get('/search', function(req, res){
-  // doc.list.forEach(function(el, ind, arr){
-
-  // });
   res.json({list: ["Enter a word", "to see its", "pronunciations"]});
 });
 
@@ -32,6 +29,11 @@ app.get('/search/:word', function(req, res){
     returnList = ["Not in Dictionary"];
   }
   res.json({list: returnList});
+});
+
+app.get('/rhyme/:pattern', function(req, res){
+  var pattern = req.params.pattern;
+  
 });
 
 var server = app.listen(9292, function(){

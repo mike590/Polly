@@ -1,6 +1,5 @@
-<div>
+<div id='syl_select'>
   <ul>
-    <li ng-repeat='syl in syls'>{{ syl }}</li>
+    <li ng-repeat='syl in rhymer.syls' ng-click="clickSyl($index)" id='syl{{$index}}' class='use'>{{ syl.text }}</li>
   </ul>
-  <button ng-click="tester()">Tester</button>
 </div>

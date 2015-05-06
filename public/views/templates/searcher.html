@@ -1,9 +1,9 @@
 <div>
-  <input type="text" ng-model="rhyme">
-  <button ng-click="getProns()">Break Syllables!</button>
+  <input type="text" ng-model="rhyme" id='rhyme_input' autofocus>
+  <button ng-click="rhymer.getProns(rhyme)">Break Syllables!</button>
   <div>
     <ul>
-      <li ng-repeat='pron in prons.list'>{{ pron }}</li>
+      <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.selectPron(pron)'>{{ pron }}</li>
     </ul>
   </div>
 </div>

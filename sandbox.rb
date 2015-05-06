@@ -135,6 +135,7 @@ end
   end
   word["exacts"] = temp
 end
+
 binding.pry
 
 # Create hash with consonant keys, each key containg a list of prons that 
