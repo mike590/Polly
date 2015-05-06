@@ -12,9 +12,12 @@ app.factory('rhymer', ["$http", function($http){
     pronunciations: [],
     selectPron: function(pron){
       rhymer.syls = [];
-      var syls = pron.split("-");
+      debugger;
+      var syls = pron.text.split("-");
+      var exacts = pron.exact.split("-");
       syls.forEach(function(el, ind, arr){
-        rhymer.syls.push({text: el, i: ind, use: true});
+        debugger;
+        rhymer.syls.push({text: el, exact: exacts[ind], use: true});
       });
     },
     getProns: function(rhyme){
@@ -23,6 +26,7 @@ app.factory('rhymer', ["$http", function($http){
       success(function(data) {
         rhymer.pronunciations = data.list;
         rhymer.selectPron(data.list[0]);
+        debugger;
       }).
       error(function(data) {});
     },
@@ -30,6 +34,7 @@ app.factory('rhymer', ["$http", function($http){
       pattern = '';
       rhymer.syls.forEach(function(el, ind, arr){
         if(el.use){
+          debugger;
           pattern += el.text;
         } else {
           pattern += '\\d+';

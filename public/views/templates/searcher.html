@@ -3,7 +3,7 @@
   <button ng-click="rhymer.getProns(rhyme)">Break Syllables!</button>
   <div>
     <ul>
-      <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.selectPron(pron)'>{{ pron }}</li>
+      <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.selectPron(pron)'>{{ pron.text }}</li>
     </ul>
   </div>
 </div>

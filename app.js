@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var debug = require('debug')('global');
-var doc = require('./parses/protolist.json')
+var doc = require('./wordlist.json');
 
 // app.use(express.logger('dev'));
 app.use(express.static(__dirname + '/public/views'));
@@ -20,20 +20,26 @@ app.get('/search', function(req, res){
 app.get('/search/:word', function(req, res){
   var returnList = [];
   var matchWord = req.params.word;
-  doc.list.forEach(function(el, ind, arr){
+  doc.forEach(function(el, ind, arr){
     if(matchWord === el.word){
-      returnList = el.pron
+      el.pron.forEach(function(p_el, p_ind, p_arr){
+        el.exacts.forEach(function(ex_el, ex_ind, ex_arr){
+          if(p_ind === ex_ind){
+            returnList.push({text: p_el, exact: ex_el});
+          }
+        });
+      });
     }
   });
   if(returnList.length === 0){
-    returnList = ["Not in Dictionary"];
+    returnList = [{text: "Not in Dictionary"}];
   }
   res.json({list: returnList});
 });
 
 app.get('/rhyme/:pattern', function(req, res){
   var pattern = req.params.pattern;
-  
+  res.json({});
 });
 
 var server = app.listen(9292, function(){
