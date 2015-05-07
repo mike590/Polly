@@ -24,6 +24,7 @@ app.factory('rhymer', ["$http", function($http){
       success(function(data) {
         rhymer.pronunciations = data.list;
         rhymer.selectPron(data.list[0]);
+        rhymer.getCMRhymes();
       }).
       error(function(data) {});
     },
@@ -33,23 +34,30 @@ app.factory('rhymer', ["$http", function($http){
         if(el.use){
           pattern += el.exact;
         } else {
-          pattern += '\\d+';
+          pattern += '^';
         }
         if(ind != rhymer.syls.length - 1){
           pattern += '-';
         }
       });
+      console.log(pattern);
       return pattern;
     },
     getCMRhymes: function(){
-      var pattern = compilePattern();
+      var pattern = rhymer.compilePattern();
       var url = '/rhyme/' + pattern;
+      console.log("Accessing %s", url);
       $http.get(url).
       success(function(data) {
-        
+        console.log("Just got back");
+        cMRhymes = data.rhymes;
+        cMRhymes.forEach(function(el, ind, arr){
+          console.log(el);
+        });
       }).
       error(function(data) {});
-    }
+    },
+    cMRhymes: []
   };
   return rhymer;
 }]);
@@ -90,7 +98,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
         var syl_dom = document.getElementById("syl" + index)
         new_class = syl.use ? "use" : "dont"
         syl_dom.className = new_class;
-        rhymer.compilePattern();
+        rhymer.getCMRhymes();
       };
 
       scope.rhymer = rhymer;
