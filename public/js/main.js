@@ -17,6 +17,7 @@ app.factory('rhymer', ["$http", function($http){
       syls.forEach(function(el, ind, arr){
         rhymer.syls.push({text: el, exact: exacts[ind], use: true});
       });
+      rhymer.getRhymes();
     },
     getProns: function(rhyme){
       var url = '/search/' + rhyme;
@@ -24,7 +25,7 @@ app.factory('rhymer', ["$http", function($http){
       success(function(data) {
         rhymer.pronunciations = data.list;
         rhymer.selectPron(data.list[0]);
-        rhymer.getCMRhymes();
+        rhymer.getRhymes();
       }).
       error(function(data) {});
     },
@@ -40,20 +41,14 @@ app.factory('rhymer', ["$http", function($http){
           pattern += '-';
         }
       });
-      console.log(pattern);
       return pattern;
     },
-    getCMRhymes: function(){
+    getRhymes: function(){
       var pattern = rhymer.compilePattern();
       var url = '/rhyme/' + pattern;
-      console.log("Accessing %s", url);
       $http.get(url).
       success(function(data) {
-        console.log("Just got back");
-        cMRhymes = data.rhymes;
-        cMRhymes.forEach(function(el, ind, arr){
-          console.log(el);
-        });
+        rhymer.cMRhymes = data.rhymes;
       }).
       error(function(data) {});
     },
@@ -68,8 +63,6 @@ app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
     replace: true,
     templateUrl: "searcher.html",
     link: function(scope, elem, attr){
-
-      
 
       scope.rhymer = rhymer;
       scope.rhyme = "";
@@ -98,7 +91,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
         var syl_dom = document.getElementById("syl" + index)
         new_class = syl.use ? "use" : "dont"
         syl_dom.className = new_class;
-        rhymer.getCMRhymes();
+        rhymer.getRhymes();
       };
 
       scope.rhymer = rhymer;

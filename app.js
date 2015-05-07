@@ -38,15 +38,23 @@ app.get('/search/:word', function(req, res){
 });
 
 app.get('/rhyme/:pattern', function(req, res){
-  var pattern = req.params.pattern.replace("^", "[ˈˌ]\\w+");
+  var pattern = req.params.pattern.replace(/\^/g, "[\\wəēīȯᵊüāäōœˈˌ]+");
   var regExPattern = new RegExp(pattern);
   var syl_count = pattern.split("-").length;
-  var rhymes = [];
+  var rhymes = ["The translated pattern is " + pattern];
   function rhyme(word){
     word.exacts.forEach(function(ex_el, ex_ind, ex_arr){
-      var subString = ex_el.substring(ex_el.length - pattern.length, ex_el.length);
+      var ex_arr = ex_el.split("-");
+      var subString = "";
+      ex_arr.forEach(function(ex_syl, ex_ind, ex_arr){
+        if(ex_arr.length - ex_ind <= syl_count){
+          subString += ex_syl;
+          subString += "-"
+        }
+      });
+      subString = subString.substring(0, subString.length -1);
       if(subString.match(regExPattern)){
-        rhymes.push(word.word);
+        rhymes.push(word.word + ": " + subString);
         return;
       }
     });
@@ -55,8 +63,10 @@ app.get('/rhyme/:pattern', function(req, res){
   doc.forEach(function(w_el, w_ind, w_arr){
     rhyme(w_el);
   });
-
-  res.json({rhymes: rhymes});
+  var uniqueRhymes = rhymes.filter(function(elem, pos) {
+    return rhymes.indexOf(elem) == pos;
+  }); 
+  res.json({rhymes: uniqueRhymes});
 });
 
 var server = app.listen(9292, function(){
