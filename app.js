@@ -54,7 +54,7 @@ app.get('/rhyme/:pattern', function(req, res){
       });
       subString = subString.substring(0, subString.length -1);
       if(subString.match(regExPattern)){
-        rhymes.push(word.word + ": " + subString);
+        rhymes.push(word.word);
         return;
       }
     });
