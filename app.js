@@ -9,6 +9,70 @@ app.use(express.static(__dirname + '/public/views/templates'));
 app.use(express.static(__dirname + '/public/js'));
 app.use(express.static(__dirname + '/public/styles'));
 
+// helpers
+function completeMatchRhyme(patternArr){
+  var prePatternArr = patternArr;
+  // var prePatternArr = req.params.pattern.split("-");
+  var done = false;
+  var splice_count = 0;
+  var rhymes = [];
+  prePatternArr.forEach(function(el, ind, arr){
+    if(!done && el === "^"){
+      splice_count += 1;
+    } else {
+      done = true;
+    }
+  });
+  prePatternArr.splice(0, splice_count);
+  var pattern = prePatternArr.join("-").replace(/\^/g, "[\\wəēīȯᵊüāäōœˈˌ]+");
+  var regExPattern = new RegExp(pattern);
+  rhymes.push("The translated pattern is " + pattern);
+  var syl_count = pattern.split("-").length;
+  function rhyme(word){
+    word.exacts.forEach(function(ex_el, ex_ind, ex_arr){
+      var ex_arr = ex_el.split("-");
+      var subString = "";
+      ex_arr.forEach(function(ex_syl, ex_ind, ex_arr){
+        if(ex_arr.length - ex_ind <= syl_count){
+          subString += ex_syl;
+          subString += "-"
+        }
+      });
+      subString = subString.substring(0, subString.length -1);
+      if(subString.match(regExPattern)){
+        rhymes.push(word.word);
+        return;
+      }
+    });
+    return;
+  }
+  doc.forEach(function(w_el, w_ind, w_arr){
+    rhyme(w_el);
+  });
+  var uniqueRhymes = rhymes.filter(function(elem, pos) {
+    return rhymes.indexOf(elem) == pos;
+  }); 
+  return rhymes;
+}
+
+function splitMatchRhyme(sylArr){
+  var rhymes = [];
+  sylArr.forEach(function(syl_ex){
+    var tempSylArr = [];
+    doc.forEach(function(word){
+      word.exacts.forEach(function(word_ex){
+        if(word_ex.split("-").length === 1 && word_ex === syl_ex){
+          tempSylArr.push(word.word);
+        }
+      });
+    });
+    // get rid of uniques in tempSylArr
+    rhymes.push(tempSylArr);
+  });
+  return rhymes;
+}
+
+
 app.get('/', function(req, res){
   res.sendFile(__dirname + 'index.html')
 });
@@ -38,35 +102,9 @@ app.get('/search/:word', function(req, res){
 });
 
 app.get('/rhyme/:pattern', function(req, res){
-  var pattern = req.params.pattern.replace(/\^/g, "[\\wəēīȯᵊüāäōœˈˌ]+");
-  var regExPattern = new RegExp(pattern);
-  var syl_count = pattern.split("-").length;
-  var rhymes = ["The translated pattern is " + pattern];
-  function rhyme(word){
-    word.exacts.forEach(function(ex_el, ex_ind, ex_arr){
-      var ex_arr = ex_el.split("-");
-      var subString = "";
-      ex_arr.forEach(function(ex_syl, ex_ind, ex_arr){
-        if(ex_arr.length - ex_ind <= syl_count){
-          subString += ex_syl;
-          subString += "-"
-        }
-      });
-      subString = subString.substring(0, subString.length -1);
-      if(subString.match(regExPattern)){
-        rhymes.push(word.word);
-        return;
-      }
-    });
-    return;
-  }
-  doc.forEach(function(w_el, w_ind, w_arr){
-    rhyme(w_el);
-  });
-  var uniqueRhymes = rhymes.filter(function(elem, pos) {
-    return rhymes.indexOf(elem) == pos;
-  }); 
-  res.json({rhymes: uniqueRhymes});
+  var completeMatchRhymes = completeMatchRhyme(req.params.pattern.split("-"));
+  var splitMatchRhymes = splitMatchRhyme(req.params.pattern.split("-"));
+  res.json({completeMatch: completeMatchRhymes, splitMatch: splitMatchRhymes});
 });
 
 var server = app.listen(9292, function(){

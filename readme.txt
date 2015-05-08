@@ -1,6 +1,8 @@
 Polly
 
 To Do:
+Create history. Trigger change in url on rhyme search, and enable back button to cycle through previous rhymes. Possibly also hotkey a button to move forward through rhymes as well, and give explicit instructions on how this works to the user.
+
 After mapping all single vowel-to-consonants combination, search for syllables with multiple 
 vowels.
 Make alternative rhyme-map algorithm: 

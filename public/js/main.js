@@ -8,8 +8,9 @@ app.config(["$routeProvider", function($routeProvider){
 
 app.factory('rhymer', ["$http", function($http){
   var rhymer = {
-    syls: [],
+    syls: [{text: "Choose"}, {text: "a"}, {text: "word"}],
     pronunciations: [],
+    firstTimeStatus: "new",
     selectPron: function(pron){
       rhymer.syls = [];
       var syls = pron.text.split("-");
@@ -20,6 +21,14 @@ app.factory('rhymer', ["$http", function($http){
       rhymer.getRhymes();
     },
     getProns: function(rhyme){
+      if(rhymer.firstTimeStatus === "new"){
+        var header = document.createElement("H4");
+        var text = document.createTextNode("Pronunciations:");
+        header.appendChild(text);
+        var pronList = document.getElementById("pron_list")
+        pronList.insertBefore(header, pronList.firstChild);
+        rhymer.firstTimeStatus = "searched";
+      }
       var url = '/search/' + rhyme;
       $http.get(url).
       success(function(data) {
@@ -48,11 +57,14 @@ app.factory('rhymer', ["$http", function($http){
       var url = '/rhyme/' + pattern;
       $http.get(url).
       success(function(data) {
-        rhymer.cMRhymes = data.rhymes;
+        rhymer.cMRhymes = data.completeMatch;
+        rhymer.splitRhymes = data.splitMatch;
+        console.log(rhymer.splitRhymes);
       }).
       error(function(data) {});
     },
-    cMRhymes: []
+    cMRhymes: [],
+    splitRhymes: []
   };
   return rhymer;
 }]);

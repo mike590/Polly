@@ -1,7 +1,5 @@
 #syl_select {
-  height: 30%;
-  width: 50%;
-  margin: 0 auto;
+  height: 15%;
   background-color: white;
 }
 
@@ -16,17 +14,41 @@
   height: 100%;
   font-weight: bold;
   display: inline;
-  margin: 5px 15px;
-  padding: 10px;
+  margin: 5 30;
+}
+
+#pron_list ul {
+  height: 100%;
+  list-style: none;
+}
+
+#pron_list ul li {
+  height: 100%;
+  font: 25px arial;
+  margin: 5px auto;
+  border: dotted black 1px;
 }
 
 .use {
   font: 50px arial;
   color: blue;
   border: solid blue 3px;
+  line-height: 200%;
 }
 
 .dont {
   font: 40px 'times new roman';
   color: #A7ABA4;
+}
+
+#vert_pad_20 {
+  height: 20%;
+}
+
+#vert_pad_30 {
+  height: 10%;
+}
+
+.input-group {
+  border: none;
 }
