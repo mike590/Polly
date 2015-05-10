@@ -67,6 +67,9 @@ function splitMatchRhyme(sylArr){
       });
     });
     // get rid of uniques in tempSylArr
+    if(tempSylArr.length === 0){
+      tempSylArr.push("-");
+    }
     rhymes.push(tempSylArr);
   });
   return rhymes;

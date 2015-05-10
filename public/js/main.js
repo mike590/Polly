@@ -122,3 +122,14 @@ app.directive("completematch", ['rhymer', function(rhymer){
     }
   }
 }]);
+
+app.directive("splitmatch", ['rhymer', function(rhymer){
+  return{
+    restrict: "A",
+    replace: true,
+    templateUrl: "splitmatch.html",
+    link: function(scope, elem, ettr){
+      scope.rhymer = rhymer;
+    }
+  }
+}]);
