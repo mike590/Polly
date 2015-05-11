@@ -1,7 +1,7 @@
 Polly
 
 To Do:
-Create history. Trigger change in url on rhyme search, and enable back button to cycle through previous rhymes. Possibly also hotkey a button to move forward through rhymes as well, and give explicit instructions on how this works to the user.
+Create history. Searching a rhyme yields two things in the url: rhyme and complete-match. If the user switches to split-match, the url changes to reflect that. If the user then searches another word, the rhyme in thr url will change, but the type will still be split-match. This way, people can share links specifically to the word and type of rhyme they want to share.
 
 After mapping all single vowel-to-consonants combination, search for syllables with multiple 
 vowels.
