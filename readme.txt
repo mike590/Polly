@@ -1,6 +1,8 @@
 Polly
 
 To Do:
+When a word has multiple pronunciations, ask "Did you mean (word) like (rhymes of first pronunciation), or (word) like (rhymes from second pronunciation)?"
+
 Create history. Searching a rhyme yields two things in the url: rhyme and complete-match. If the user switches to split-match, the url changes to reflect that. If the user then searches another word, the rhyme in thr url will change, but the type will still be split-match. This way, people can share links specifically to the word and type of rhyme they want to share.
 
 After mapping all single vowel-to-consonants combination, search for syllables with multiple 
