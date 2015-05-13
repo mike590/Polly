@@ -22,7 +22,8 @@ app.factory('rhymer', ["$http", function($http){
     },
     getProns: function(rhyme){
       if(rhymer.firstTimeStatus === "new"){
-        var header = document.createElement("H4");
+        var header = document.createElement("li");
+        header.id = "pronHeader";
         var text = document.createTextNode("Pronunciations:");
         header.appendChild(text);
         var pronList = document.getElementById("pron_list")

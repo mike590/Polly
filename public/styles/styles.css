@@ -1,3 +1,7 @@
+ul {
+  list-style: none;
+}
+
 #syl_select {
   height: 15%;
   background-color: white;
@@ -5,7 +9,6 @@
 
 #syl_select ul {
   height: 100%;
-  list-style: none;
   text-align: center;
   padding: 0;
 }
@@ -17,16 +20,17 @@
   margin: 5 30;
 }
 
-#pron_list ul {
-  height: 100%;
+#pron_list {
   list-style: none;
+  text-align: center;
 }
 
-#pron_list ul li {
+#pron_list li {
   height: 100%;
   font: 25px arial;
-  margin: 5px auto;
+  margin: 5px 10px;
   border: dotted black 1px;
+  display: inline;
 }
 
 .use {
@@ -43,10 +47,6 @@
 
 #vert_pad_20 {
   height: 20%;
-}
-
-#vert_pad_30 {
-  height: 10%;
 }
 
 .input-group {
