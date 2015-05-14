@@ -8,23 +8,30 @@ app.config(["$routeProvider", function($routeProvider){
 
 app.factory('rhymer', ["$http", function($http){
   var rhymer = {
-    syls: [{text: "Choose"}, {text: "a"}, {text: "word"}],
+    syls: [{text: "Choose", disabled: true}, {text: "a", disabled: true}, {text: "word", disabled: true}],
     pronunciations: [],
     firstTimeStatus: "new",
     selectPron: function(pron){
       rhymer.syls = [];
+      var exacts;
       var syls = pron.text.split("-");
-      var exacts = pron.exact.split("-");
-      syls.forEach(function(el, ind, arr){
-        rhymer.syls.push({text: el, exact: exacts[ind], use: true});
-      });
-      rhymer.getRhymes();
+      if(pron.exact){
+        exacts = pron.exact.split("-");
+        syls.forEach(function(el, ind, arr){
+          rhymer.syls.push({text: el, exact: exacts[ind], use: true});
+        });
+        rhymer.getRhymes();
+      } else {
+        rhymer.syls.push(pron);
+        rhymer.cMRhymes = ["Word Not Found"];
+        rhymer.splitRhymes = [false];
+      }
     },
     getProns: function(rhyme){
       if(rhymer.firstTimeStatus === "new"){
         var header = document.createElement("li");
         header.id = "pronHeader";
-        var text = document.createTextNode("Pronunciations:");
+        var text = document.createTextNode("Choose a Pronunciation:");
         header.appendChild(text);
         var pronList = document.getElementById("pron_list")
         pronList.insertBefore(header, pronList.firstChild);
@@ -35,7 +42,6 @@ app.factory('rhymer', ["$http", function($http){
       success(function(data) {
         rhymer.pronunciations = data.list;
         rhymer.selectPron(data.list[0]);
-        rhymer.getRhymes();
       }).
       error(function(data) {});
     },
@@ -60,7 +66,6 @@ app.factory('rhymer', ["$http", function($http){
       success(function(data) {
         rhymer.cMRhymes = data.completeMatch;
         rhymer.splitRhymes = data.splitMatch;
-        console.log(rhymer.splitRhymes);
       }).
       error(function(data) {});
     },
@@ -100,11 +105,15 @@ app.directive("sylselect", ['rhymer', function(rhymer){
       
       scope.clickSyl = function(index){
         var syl = scope.rhymer.syls[index];
+        if(syl.disabled != true){
         syl.use = !syl.use;
         var syl_dom = document.getElementById("syl" + index)
         new_class = syl.use ? "use" : "dont"
         syl_dom.className = new_class;
         rhymer.getRhymes();
+        } else {
+
+        }
       };
 
       scope.rhymer = rhymer;

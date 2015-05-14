@@ -99,7 +99,7 @@ app.get('/search/:word', function(req, res){
     }
   });
   if(returnList.length === 0){
-    returnList = [{text: "Not in Dictionary"}];
+    returnList = [{text: "Not in Dictionary", disabled: true}];
   }
   res.json({list: returnList});
 });

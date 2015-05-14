@@ -1,6 +1,12 @@
 Polly
 
 To Do:
+Put a dash between syllables in the syllable selector.
+
+Size of syllable selector container changes based on how many syllables in the word. Make it adaptive.
+
+When a split match rhyme has many rhymes (more than 10-15), inlcude small button allowing user to see all the rhymes. This button must be available for each syllable.
+
 When a word has multiple pronunciations, ask "Did you mean (word) like (rhymes of first pronunciation), or (word) like (rhymes from second pronunciation)?"
 
 Create history. Searching a rhyme yields two things in the url: rhyme and complete-match. If the user switches to split-match, the url changes to reflect that. If the user then searches another word, the rhyme in thr url will change, but the type will still be split-match. This way, people can share links specifically to the word and type of rhyme they want to share.

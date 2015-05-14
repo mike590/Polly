@@ -49,6 +49,10 @@ ul {
   height: 20%;
 }
 
+#vert_pad_5 {
+  height: 5%;
+}
+
 .input-group {
   border: none;
 }

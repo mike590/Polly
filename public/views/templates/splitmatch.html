@@ -2,7 +2,8 @@
   <h3>Split Match</h3>
   <ul>
     <li ng-repeat="rhymeArr in rhymer.splitRhymes" class='col-xs-2'>
-      <ul>
+      <span ng-hide="rhymeArr != false">Word Not Found</span>
+      <ul ng-hide="rhymeArr == false">
         <li ng-repeat='rhyme in rhymeArr'>{{ rhyme }}</li>
       </ul>
     </li>
