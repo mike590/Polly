@@ -1,15 +1,14 @@
 var app = angular.module('polly', []);
 
 app.config(["$routeProvider", function($routeProvider){
-  $routeProvider.
-  when('/complete/:word', {template: "<completematch>"}).
-  when('/boom', {redirectTo: '/complete/boom'}).
-  when('/', {redirectTo: '/complete/sample'}).
-  otherwise({redirectTo: '/complete/other'});
+  // $routeProvider.
+  // when('/complete/:word/:pron/:pattern', {template: "<div completematch></div>"}).
+  // when('/', {redirectTo: '/complete/sample/1/11'}).
+  // otherwise({redirectTo: '/complete/sample/1/11'});
 }]);
 
 app.factory('rhymer', ["$http", function($http){
-  var rhymer = {
+    var rhymer = {
     syls: [{text: "Choose", disabled: true}, {text: "a", disabled: true}, {text: "word", disabled: true}],
     pronunciations: [],
     firstTimeStatus: "new",
@@ -77,6 +76,10 @@ app.factory('rhymer', ["$http", function($http){
   return rhymer;
 }]);
 
+app.controller("routeCtlr", ["$routeParams", 'rhymer', function($routeParams, rhymer){
+
+}]);
+
 app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
   return {
     restrict: "A",
@@ -124,7 +127,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
   }
 }]);
 
-app.directive("completematch", ['$routeParams', 'rhymer', function($routeParams, rhymer){
+app.directive("completematch", ['rhymer', function(rhymer){
   return{
     restrict: "A",
     replace: true,
@@ -135,7 +138,7 @@ app.directive("completematch", ['$routeParams', 'rhymer', function($routeParams,
   }
 }]);
 
-app.directive("splitmatch", ["$routeParams", 'rhymer', function($routeParams, rhymer){
+app.directive("splitmatch", ['rhymer', function(rhymer){
   return{
     restrict: "A",
     replace: true,
