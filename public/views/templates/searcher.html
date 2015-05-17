@@ -5,12 +5,9 @@
     <span class="input-group-addon" ng-click="rhymer.getProns(rhyme)" id="break_syllables">Rhyme</span>
   </div>
   <div id='vert_pad_5'></div>
-  <div sylselect></div>
   <div ng-show='rhymer.pronunciations.length > 1' class='col-xs-12'>
-    <div id='vert_pad_5'></div>
     <ul id='pron_list'>
       <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.selectPron(pron)'>{{ pron.text }}</li>
     </ul>
   </div>
-  <div id='vert_pad_20'></div>
 </div>

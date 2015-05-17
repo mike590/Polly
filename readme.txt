@@ -1,6 +1,10 @@
 Polly
 
 To Do:
+If all syllables are de-selected, the rhyme read out for all types should read something like "Choose a syllable to rhyme!"
+
+If all syllables are de-selected, the positioning of the syllable selector changes because there are no more large letters. Fix this positioning.
+
 Put a dash between syllables in the syllable selector.
 
 Size of syllable selector container changes based on how many syllables in the word. Make it adaptive.

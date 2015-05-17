@@ -2,6 +2,10 @@ ul {
   list-style: none;
 }
 
+.jumbotron {
+  background-color: #3E9CFA;
+}
+
 #syl_select {
   height: 15%;
   background-color: white;
@@ -35,14 +39,13 @@ ul {
 
 .use {
   font: 50px arial;
-  color: blue;
-  border: solid blue 3px;
+  color: #33E863;
   line-height: 200%;
 }
 
 .dont {
   font: 40px 'times new roman';
-  color: #A7ABA4;
+  color: #F52020;
 }
 
 #vert_pad_20 {

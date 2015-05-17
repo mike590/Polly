@@ -1,9 +1,11 @@
 var app = angular.module('polly', []);
 
 app.config(["$routeProvider", function($routeProvider){
-  // $routeProvider.
-  // when('/', {templateUrl: "", controller: ""}).
-  // otherwise({redirectTo: '/'});
+  $routeProvider.
+  when('/complete/:word', {template: "<completematch>"}).
+  when('/boom', {redirectTo: '/complete/boom'}).
+  when('/', {redirectTo: '/complete/sample'}).
+  otherwise({redirectTo: '/complete/other'});
 }]);
 
 app.factory('rhymer', ["$http", function($http){
@@ -122,7 +124,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
   }
 }]);
 
-app.directive("completematch", ['rhymer', function(rhymer){
+app.directive("completematch", ['$routeParams', 'rhymer', function($routeParams, rhymer){
   return{
     restrict: "A",
     replace: true,
@@ -133,7 +135,7 @@ app.directive("completematch", ['rhymer', function(rhymer){
   }
 }]);
 
-app.directive("splitmatch", ['rhymer', function(rhymer){
+app.directive("splitmatch", ["$routeParams", 'rhymer', function($routeParams, rhymer){
   return{
     restrict: "A",
     replace: true,
