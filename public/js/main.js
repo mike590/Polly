@@ -16,6 +16,12 @@ app.factory('rhymer', ["$http", function($http){
     helpSyls: true,
     helpWholeMatch: true,
     helpSplitMatch: true,
+    clickPron: function(pron){
+      if(pron.exact){
+        rhymer.helpProns = false;
+        rhymer.selectPron(pron);
+      }
+    },
     selectPron: function(pron){
       if(pron.token){
         return null;
@@ -115,6 +121,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
       scope.clickSyl = function(index){
         var syl = scope.rhymer.syls[index];
         if(syl.disabled != true && rhymer.usableSyls != 1 || !syl.use){
+          rhymer.helpSyls = false;
           // Alternate syl class and property
           syl.use = !syl.use;
           var syl_dom = document.getElementById("syl" + index)
