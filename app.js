@@ -8,6 +8,7 @@ app.use(express.static(__dirname + '/public/views'));
 app.use(express.static(__dirname + '/public/views/templates'));
 app.use(express.static(__dirname + '/public/js'));
 app.use(express.static(__dirname + '/public/styles'));
+app.use(express.static(__dirname + '/public/fonts'));
 
 // helpers
 function completeMatchRhyme(patternArr){
@@ -102,6 +103,9 @@ app.get('/search/:word', function(req, res){
   if(returnList.length === 0){
     returnList = [{text: "Not in Dictionary", disabled: true}];
   }
+  returnList.sort(function(a, b){
+    return a.text.length - b.text.length;
+  });
   res.json({list: returnList});
 });
 

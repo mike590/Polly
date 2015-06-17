@@ -9,7 +9,7 @@ app.config(["$routeProvider", function($routeProvider){
 
 app.factory('rhymer', ["$http", function($http){
     var rhymer = {
-    syls: [{text: "Choose", disabled: true}, {text: "a", disabled: true}, {text: "word", disabled: true}],
+    syls: [{text: "Enter", disabled: true}, {text: "a", disabled: true}, {text: "word", disabled: true}],
     usableSyls: 0,
     pronunciations: [],
     firstTimeStatus: "new",
