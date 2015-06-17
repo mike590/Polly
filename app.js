@@ -118,7 +118,7 @@ app.get('/rhyme/:pattern', function(req, res){
   res.json({completeMatch: completeMatchRhymes, splitMatch: splitMatchRhymes});
 });
 
-var server = app.listen(9292, function(){
+var server = app.listen(process.env.PORT || 9292, function(){
   var host = server.address().address;
   var port = server.address().port;
 
