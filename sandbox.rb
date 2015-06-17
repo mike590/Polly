@@ -31,6 +31,18 @@ def get(str)
   return word
 end
 
+# sort words by syllables
+# test = {}
+# @list.each do |word|
+#   word["pron"].each do |pron|
+#     num = pron.split("-").length
+#     if num > 3
+#       test[num] ||= []
+#       test[num].push(word["word"])
+#     end
+#   end
+# end
+
 # def rhyme(str, i = 0)
 #   match_word = get(str)
 #   pattern = match_word['code'][i]

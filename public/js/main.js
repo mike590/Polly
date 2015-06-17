@@ -10,6 +10,7 @@ app.config(["$routeProvider", function($routeProvider){
 app.factory('rhymer', ["$http", function($http){
     var rhymer = {
     syls: [{text: "Choose", disabled: true}, {text: "a", disabled: true}, {text: "word", disabled: true}],
+    usableSyls: 0,
     pronunciations: [],
     firstTimeStatus: "new",
     selectPron: function(pron){
@@ -65,6 +66,12 @@ app.factory('rhymer', ["$http", function($http){
       var url = '/rhyme/' + pattern;
       $http.get(url).
       success(function(data) {
+
+        // rhymer.splitOffsetClass = "col-xs-" + cols;
+        rhymer.usableSyls = 0;
+        rhymer.syls.forEach(function(el, ind, arr){
+          if(el.use){ rhymer.usableSyls += 1}
+        });
         rhymer.cMRhymes = data.completeMatch;
         rhymer.splitRhymes = data.splitMatch;
       }).
@@ -111,13 +118,12 @@ app.directive("sylselect", ['rhymer', function(rhymer){
       scope.clickSyl = function(index){
         var syl = scope.rhymer.syls[index];
         if(syl.disabled != true){
-        syl.use = !syl.use;
-        var syl_dom = document.getElementById("syl" + index)
-        new_class = syl.use ? "use" : "dont"
-        syl_dom.className = new_class;
-        rhymer.getRhymes();
-        } else {
-
+          // Alternate syl class and property
+          syl.use = !syl.use;
+          var syl_dom = document.getElementById("syl" + index)
+          new_class = syl.use ? "use" : "dont"
+          syl_dom.className = new_class;
+          rhymer.getRhymes();
         }
       };
 

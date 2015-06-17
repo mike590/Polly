@@ -1,8 +1,17 @@
+body {
+  background-color: #F0F0F7;
+}
+
 ul {
   list-style: none;
 }
 
+li {
+  text-align: center;
+}
+
 #complete_match {
+  margin-top: 20px;
   background-color: #3E9CFA;
   border-radius: 10px;
 }
@@ -14,10 +23,11 @@ ul {
 #complete_match ul li {
   display: inline-block;
   padding: 2px;
-  margin: 2px 15px;
+  margin: 7px 14px;
   background-color: orange;
   font-size: 20px;
   border-radius: 10px;
+  box-shadow: 3px 3px 5px black;
 }
 
 #split_match {
@@ -30,8 +40,35 @@ ul {
   font-size: 40px;
 }
 
+#top_syls li {
+  font-weight: bold;
+}
+
 .split_singles {
   font-size: 25px;
+}
+
+.one_split {
+  margin-left: -55px;
+}
+
+.two_split {
+  margin-left: -40px;
+}
+
+.three_split {
+  margin-left: -35px;
+}
+
+.four_split {
+  margin-left: -39px;
+}
+
+.five_split {
+  margin-left: -35px;
+}
+
+.six_split {
   margin-left: -40px;
 }
 
@@ -41,7 +78,17 @@ ul {
 
 #syl_select {
   height: 15%;
+}
+
+#syl_select ul {
+  /*background-color: orange;*/
+}
+
+#syl_select ul li {
+  padding: 8px;
   background-color: white;
+  border-radius: 40px;
+  box-shadow: 3px 3px 5px black;
 }
 
 #syl_select ul {

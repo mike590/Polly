@@ -51,7 +51,7 @@ function completeMatchRhyme(patternArr){
   var uniqueRhymes = rhymes.filter(function(elem, pos) {
     return rhymes.indexOf(elem) == pos;
   }); 
-  return rhymes;
+  return rhymes.sort();
 }
 
 function splitMatchRhyme(sylArr){
@@ -70,7 +70,7 @@ function splitMatchRhyme(sylArr){
       if(tempSylArr.length === 0){
         tempSylArr.push("Nothing Found");
       }
-      rhymes.push(tempSylArr);
+      rhymes.push(tempSylArr.sort());
     }
   });
   return rhymes;

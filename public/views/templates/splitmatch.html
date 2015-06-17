@@ -1,19 +1,24 @@
-<div id='split_match' class='col-xs-8 col-xs-offset-2'>
+<div id='split_match' class='col-xs-10 col-xs-offset-1'>
   <h3>Split Match</h3>
   <div class="row">
+    <!-- if less than 5 usable syllables, then well is used to center results -->
+    <div class="col-xs-{{[4, 3, 1, 2][rhymer.usableSyls - 1]}}" ng-show="rhymer.usableSyls < 5"></div>
+    <div class="col-xs-1" ng-show="rhymer.usableSyls == 5"></div>
     <ul id="top_syls">
-      <!-- ng-show="{{syl.use}}" -->
-      <li class="col-xs-2 col-xs-offset-1" ng-repeat="syl in rhymer.syls" ng-show="syl.use">{{ syl.text }}</li>
+      <li class="col-xs-2 {{{true: 'col-xs-offset-1'}[rhymer.usableSyls < 4]}}" ng-repeat="syl in rhymer.syls" ng-show="syl.use">{{ syl.text }}</li>
     </ul>
   </div>
-  <ul>
-    <div class="row">
-      <li class="col-xs-2 col-xs-offset-1" ng-repeat="rhymeArr in rhymer.splitRhymes" class='col-xs-2'>
+  <div class="row">
+    <!-- if less than 5 usable syllables, then well is used to center results -->
+    <div class="col-xs-{{[4, 3, 1, 2][rhymer.usableSyls - 1]}}" ng-show="rhymer.usableSyls < 5"></div>
+    <div class="col-xs-1" ng-show="rhymer.usableSyls == 5"></div>
+    <ul>
+      <li class="col-xs-2 {{{true: 'col-xs-offset-1'}[rhymer.usableSyls < 4]}}" ng-repeat="rhymeArr in rhymer.splitRhymes" class='col-xs-2'>
         <span ng-hide="rhymeArr != false">Word Not Found</span>
         <ul ng-hide="rhymeArr == false">
-          <li class="split_singles" ng-repeat='rhyme in rhymeArr'>{{ rhyme }}</li>
+          <li class="split_singles {{['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'][rhymer.usableSyls]}}_split" ng-repeat='rhyme in rhymeArr'>{{ rhyme }}</li>
         </ul>
       </li>
-    </div>
-  </ul>
+    </ul>
+  </div>
 </div>
