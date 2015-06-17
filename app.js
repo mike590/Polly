@@ -8,6 +8,7 @@ app.use(express.static(__dirname + '/public/views/templates'));
 app.use(express.static(__dirname + '/public/js'));
 app.use(express.static(__dirname + '/public/styles'));
 app.use(express.static(__dirname + '/public/fonts'));
+app.use(express.static(__dirname + '/public/images'));
 
 // helpers
 function completeMatchRhyme(patternArr){
