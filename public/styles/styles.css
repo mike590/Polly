@@ -144,12 +144,26 @@ li {
   text-align: center;
 }
 
+#pronHeader {
+  font-family: 'soucisansregular', Helvetica, Arial;
+  font-size: 50px;
+  font-weight: bold;
+}
+
 #pron_list li {
+  background-color: #94FFFD;
+  border-radius: 10px;
   height: 100%;
   font: 25px arial;
+  padding: 5px;
   margin: 5px 10px;
-  border: dotted black 1px;
   display: inline;
+}
+
+#pron_list li:first-child {
+  font-family: 'soucisansregular', Helvetica, Arial;
+  font-size: 50px;
+  font-weight: bold;
 }
 
 .use {

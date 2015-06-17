@@ -102,11 +102,15 @@ app.get('/search/:word', function(req, res){
   });
   if(returnList.length === 0){
     returnList = [{text: "Not in Dictionary", disabled: true}];
+    returnList.unshift({text: "Pronunciations", token: true});
+    res.json({list: returnList});
+  } else {
+    returnList.sort(function(a, b){
+      return a.text.length - b.text.length;
+    });
+    returnList.unshift({text: "Pronunciations", token: true});
+    res.json({list: returnList});
   }
-  returnList.sort(function(a, b){
-    return a.text.length - b.text.length;
-  });
-  res.json({list: returnList});
 });
 
 app.get('/rhyme/:pattern', function(req, res){

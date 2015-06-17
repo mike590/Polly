@@ -12,8 +12,14 @@ app.factory('rhymer', ["$http", function($http){
     syls: [{text: "Enter", disabled: true}, {text: "a", disabled: true}, {text: "word", disabled: true}],
     usableSyls: 0,
     pronunciations: [],
-    firstTimeStatus: "new",
+    helpProns: true,
+    helpSyls: true,
+    helpWholeMatch: true,
+    helpSplitMatch: true,
     selectPron: function(pron){
+      if(pron.token){
+        return null;
+      }
       rhymer.syls = [];
       var exacts;
       var syls = pron.text.split("-");
@@ -30,20 +36,12 @@ app.factory('rhymer', ["$http", function($http){
       }
     },
     getProns: function(rhyme){
-      if(rhymer.firstTimeStatus === "new"){
-        var header = document.createElement("li");
-        header.id = "pronHeader";
-        var text = document.createTextNode("Choose a Pronunciation:");
-        header.appendChild(text);
-        var pronList = document.getElementById("pron_list")
-        pronList.insertBefore(header, pronList.firstChild);
-        rhymer.firstTimeStatus = "searched";
-      }
       var url = '/search/' + rhyme;
       $http.get(url).
       success(function(data) {
+        console.log(data);
         rhymer.pronunciations = data.list;
-        rhymer.selectPron(data.list[0]);
+        rhymer.selectPron(data.list[1]);
       }).
       error(function(data) {});
     },
@@ -67,7 +65,6 @@ app.factory('rhymer', ["$http", function($http){
       $http.get(url).
       success(function(data) {
 
-        // rhymer.splitOffsetClass = "col-xs-" + cols;
         rhymer.usableSyls = 0;
         rhymer.syls.forEach(function(el, ind, arr){
           if(el.use){ rhymer.usableSyls += 1}
