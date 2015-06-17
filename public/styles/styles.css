@@ -2,6 +2,24 @@ ul {
   list-style: none;
 }
 
+#complete_match {
+  background-color: #3E9CFA;
+  border-radius: 10px;
+}
+
+#complete_match ul {
+  border-radius: 10px;
+}
+
+#complete_match ul li {
+  display: inline-block;
+  padding: 2px;
+  margin: 2px 15px;
+  background-color: orange;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
 .jumbotron {
   background-color: #3E9CFA;
 }

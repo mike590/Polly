@@ -26,7 +26,6 @@ function completeMatchRhyme(patternArr){
   prePatternArr.splice(0, splice_count);
   var pattern = prePatternArr.join("-").replace(/\^/g, "[\\wəēīȯᵊüāäōœˈˌ]+");
   var regExPattern = new RegExp(pattern);
-  rhymes.push("The translated pattern is " + pattern);
   var syl_count = pattern.split("-").length;
   function rhyme(word){
     word.exacts.forEach(function(ex_el, ex_ind, ex_arr){
