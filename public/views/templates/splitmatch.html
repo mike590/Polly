@@ -5,7 +5,7 @@
     <div class="col-xs-{{[4, 3, 1, 2][rhymer.usableSyls - 1]}}" ng-show="rhymer.usableSyls < 5"></div>
     <div class="col-xs-1" ng-show="rhymer.usableSyls == 5"></div>
     <ul id="top_syls">
-      <li class="col-xs-2 {{{true: 'col-xs-offset-1'}[rhymer.usableSyls < 4]}}" ng-repeat="syl in rhymer.syls" ng-show="syl.use">{{ syl.text }}</li>
+      <li class="{{{true: 'col-xs-3', false: 'col-xs-2'}[rhymer.usableSyls == 2]}} {{{true: 'col-xs-offset-1'}[rhymer.usableSyls == 1 || rhymer.usableSyls == 3]}}" ng-repeat="syl in rhymer.syls" ng-show="syl.use">{{ syl.text }}</li>
     </ul>
   </div>
   <div class="row">
@@ -13,7 +13,7 @@
     <div class="col-xs-{{[4, 3, 1, 2][rhymer.usableSyls - 1]}}" ng-show="rhymer.usableSyls < 5"></div>
     <div class="col-xs-1" ng-show="rhymer.usableSyls == 5"></div>
     <ul>
-      <li class="col-xs-2 {{{true: 'col-xs-offset-1'}[rhymer.usableSyls < 4]}}" ng-repeat="rhymeArr in rhymer.splitRhymes" class='col-xs-2'>
+      <li class="{{{true: 'col-xs-3', false: 'col-xs-2'}[rhymer.usableSyls == 2]}} {{{true: 'col-xs-offset-1'}[rhymer.usableSyls == 1 || rhymer.usableSyls == 3]}}" ng-repeat="rhymeArr in rhymer.splitRhymes">
         <span ng-hide="rhymeArr != false">Word Not Found</span>
         <ul ng-hide="rhymeArr == false">
           <li class="split_singles {{['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'][rhymer.usableSyls]}}_split" ng-repeat='rhyme in rhymeArr'>{{ rhyme }}</li>

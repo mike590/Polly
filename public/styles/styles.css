@@ -22,12 +22,12 @@ li {
 
 #complete_match ul li {
   display: inline-block;
-  padding: 2px;
+  padding: 5px;
   margin: 7px 14px;
   background-color: orange;
   font-size: 20px;
   border-radius: 10px;
-  box-shadow: 3px 3px 5px black;
+  box-shadow: 3px 5px 5px black;
 }
 
 #split_match {
@@ -80,15 +80,12 @@ li {
   height: 15%;
 }
 
-#syl_select ul {
-  /*background-color: orange;*/
-}
 
 #syl_select ul li {
   padding: 8px;
   background-color: white;
   border-radius: 40px;
-  box-shadow: 3px 3px 5px black;
+  box-shadow: 3px 7px 5px black;
 }
 
 #syl_select ul {
