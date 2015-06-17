@@ -16,6 +16,10 @@ app.factory('rhymer', ["$http", function($http){
     helpSyls: true,
     helpWholeMatch: true,
     helpSplitMatch: true,
+    closeHelp: function(index){
+      var helps = ["helpProns", "helpSyls", "helpWholeMatch", "helpSplitMatch"];
+      rhymer[helps[index]] = false;
+    },
     clickPron: function(pron){
       if(pron.exact){
         rhymer.helpProns = false;
@@ -36,6 +40,7 @@ app.factory('rhymer', ["$http", function($http){
         });
         rhymer.getRhymes();
       } else {
+        rhymer.usableSyls = 0;
         rhymer.syls.push(pron);
         rhymer.cMRhymes = ["Word Not Found"];
         rhymer.splitRhymes = [false];
@@ -45,7 +50,6 @@ app.factory('rhymer', ["$http", function($http){
       var url = '/search/' + rhyme;
       $http.get(url).
       success(function(data) {
-        console.log(data);
         rhymer.pronunciations = data.list;
         rhymer.selectPron(data.list[1]);
       }).
@@ -107,6 +111,14 @@ app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
         }
       });
 
+      scope.refreshHelp = function(){
+        rhymer.helpProns = true;
+        rhymer.helpSyls = true;
+        rhymer.helpWholeMatch = true;
+        rhymer.helpSplitMatch = true;
+        scope.rhyme = "guidance";
+        rhymer.getProns(scope.rhyme);
+      }
     }
   }
 }]);

@@ -10,19 +10,24 @@
       </div> 
     </div>
   </div>
-  <div class="input-group col-xs-7 col-xs-offset-3">
-    <input  type="text" class="form-control input-lg" placeholder="Type a Rhyme" ng-model="rhyme" id='rhyme_input' autofocus>
-    <span class="input-group-addon" ng-click="rhymer.getProns(rhyme)" id="break_syllables">Rhyme</span>
-  </div>
-  <div id='vert_pad_5'></div>
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-3" id="pron_help" ng-show="rhymer.helpProns && rhymer.pronunciations.length > 2">When there is more than one pronunciation of a word, the list of pronunciations is given below. Click a different pronunciation to see its rhymes.</div>
+    <div class="col-xs-9">
+      <div class="input-group col-xs-8 col-xs-offset-2">
+        <input  type="text" class="form-control input-lg" placeholder="Type a Rhyme" ng-model="rhyme" id='rhyme_input' autofocus>
+        <span class="input-group-addon" ng-click="rhymer.getProns(rhyme)" id="break_syllables">Rhyme</span>
+      </div>
+      <div id='vert_pad_5'></div>
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 help"ng-show="rhymer.helpProns && rhymer.pronunciations.length > 2">When there are multiple pronunciations of a word, the list of pronunciations is given below. Click a different pronunciation to see its rhymes.<span class="help_close" ng-click="rhymer.closeHelp(0)">Close</span></div>
+      </div>
+      <div id='vert_pad_5' ng-show="rhymer.helpProns && rhymer.pronunciations.length > 2"></div>
+      <div ng-show='rhymer.pronunciations.length > 2' class='col-xs-12'>
+        <ul id='pron_list'>
+          <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.clickPron(pron)'>{{ pron.text }}</li>
+        </ul>
+      </div>
+      <div id='vert_pad_5' ng-show="rhymer.pronunciations.length > 2"></div>
+    </div>
+    <div class="col-xs-2 help" ng-click="refreshHelp()">Click here to refresh the help tips.</div>
   </div>
-  <div id='vert_pad_5' ng-show="rhymer.helpProns && rhymer.pronunciations.length > 2"></div>
-  <div ng-show='rhymer.pronunciations.length > 2' class='col-xs-12'>
-    <ul id='pron_list'>
-      <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.clickPron(pron)'>{{ pron.text }}</li>
-    </ul>
-  </div>
-  <div id='vert_pad_5' ng-show="rhymer.pronunciations.length > 2"></div>
 </div>

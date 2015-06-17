@@ -24,6 +24,8 @@ li {
 #jumbo {
   padding-top: 0px;
   margin-top: 10px;
+  margin-bottom: 0px;
+  background-color: #3E9CFA;
 }
 
 #title {
@@ -34,8 +36,8 @@ li {
 
 #subtitle {
   font-family: 'soucisansregular', Helvetica, Arial;
-  font-size: 60px;
-  margin-top: 50px;
+  font-size: 70px;
+  margin-top: 35px;
 }
 
 #test {
@@ -49,7 +51,7 @@ li {
 }
 
 #complete_match {
-  margin-top: 20px;
+  margin-top: 40px;
   background-color: #3E9CFA;
   border-radius: 10px;
 }
@@ -108,10 +110,6 @@ li {
 
 .six_split {
   margin-left: -40px;
-}
-
-.jumbotron {
-  background-color: #3E9CFA;
 }
 
 #syl_select {
@@ -177,25 +175,22 @@ li {
   color: #F52020;
 }
 
-#syl_help {
-  text-align: center;
-  height: 100%;
+.help {
   border-radius: 10px;
   background-color: #02B6BF;
   color: #F8FAD2;
   padding: 8px;
   font-size: 20px;
   box-shadow: 3px 7px 5px black;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
-#pron_help {
-  text-align: center;
-  border-radius: 10px;
-  background-color: #02B6BF;
-  color: #F8FAD2;
-  padding: 8px;
-  font-size: 20px;
-  box-shadow: 3px 7px 5px black;
+.help_close {
+  color: red;
+  font-weight: bold;
+  float: right;
+  font-size: 25px;
 }
 
 #vert_pad_5 {
