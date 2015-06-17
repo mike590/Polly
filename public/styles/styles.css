@@ -25,7 +25,7 @@ li {
   padding-top: 0px;
   margin-top: 10px;
   margin-bottom: 0px;
-  background-color: #3E9CFA;
+  background-color: #15BFBC;
 }
 
 #title {
@@ -54,29 +54,35 @@ li {
   font-size: 50px;
 }
 
-#complete_match {
+.complete_match {
   margin-top: 40px;
   background-color: #3E9CFA;
   border-radius: 10px;
 }
 
-#complete_match ul {
+#complete_match_top_margin {
+  margin-top: 95px;
+  background-color: #3E9CFA;
   border-radius: 10px;
 }
 
-#complete_match ul li {
+.complete_match ul {
+  border-radius: 10px;
+}
+
+.complete_match ul li {
   display: inline-block;
   padding: 5px;
   margin: 7px 14px;
-  background-color: orange;
+  background-color: #ACCFF2;
   font-size: 20px;
   border-radius: 10px;
   box-shadow: 3px 5px 5px black;
 }
 
 #split_match {
-  margin-top: 10px;
-  background-color: red;
+  margin-top: 25px;
+  background-color: #32ED9F;
   border-radius: 10px;
   padding-bottom: 10px;
 }
@@ -90,6 +96,12 @@ li {
 }
 
 .split_singles {
+  margin-top: 7px;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 10px;
+  box-shadow: 3px 5px 5px black;
+  background-color: #9CF7D1;
   font-size: 25px;
 }
 
@@ -133,6 +145,7 @@ li {
   height: 100%;
   text-align: center;
   padding: 0;
+  margin-bottom: 15px;
 }
 
 #syl_select ul li {
@@ -171,7 +184,7 @@ li {
 
 .use {
   font: 50px arial;
-  color: #33E863;
+  color: #2DBAAA;
   line-height: 200%;
 }
 
@@ -181,9 +194,10 @@ li {
 }
 
 .help {
-  border-radius: 10px;
-  background-color: #02B6BF;
-  color: #F8FAD2;
+  text-align: center;
+  border: 5px solid red;
+  background-color: #EDED32;
+  color: black;
   padding: 8px;
   font-size: 20px;
   box-shadow: 3px 7px 5px black;
