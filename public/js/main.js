@@ -132,7 +132,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
       
       scope.clickSyl = function(index){
         var syl = scope.rhymer.syls[index];
-        if(syl.disabled != true && rhymer.usableSyls != 1 || !syl.use){
+        if(syl.disabled != true && (rhymer.usableSyls != 1 || !syl.use)){
           rhymer.helpSyls = false;
           // Alternate syl class and property
           syl.use = !syl.use;
