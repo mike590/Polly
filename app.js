@@ -104,7 +104,7 @@ app.get('/search', function(req, res){
 
 app.get('/search/:word', function(req, res){
   var returnList = [];
-  var matchWord = req.params.word;
+  var matchWord = req.params.word.toLowerCase();
   doc.forEach(function(el, ind, arr){
     if(matchWord === el.word){
       el.pron.forEach(function(p_el, p_ind, p_arr){
