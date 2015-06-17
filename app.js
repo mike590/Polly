@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var debug = require('debug')('global');
 var doc = require('./wordlist.json');
 
 // app.use(express.logger('dev'));
@@ -123,5 +122,4 @@ var server = app.listen(9292, function(){
   var host = server.address().address;
   var port = server.address().port;
 
-  debug('Example app listening at http://%s:%s', host, port);
 });
