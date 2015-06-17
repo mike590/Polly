@@ -14,9 +14,10 @@ app.use(express.static(__dirname + '/public/images'));
 function completeMatchRhyme(patternArr){
   var prePatternArr = patternArr;
   // var prePatternArr = req.params.pattern.split("-");
+  var rhymes = [];
+  // Remove leading unselected syllables
   var done = false;
   var splice_count = 0;
-  var rhymes = [];
   prePatternArr.forEach(function(el, ind, arr){
     if(!done && el === "^"){
       splice_count += 1;
@@ -25,16 +26,31 @@ function completeMatchRhyme(patternArr){
     }
   });
   prePatternArr.splice(0, splice_count);
+  // Remove trailing unselected syllables
+  prePatternArr.reverse();
+  var done = false;
+  var splice_count = 0;
+  prePatternArr.forEach(function(el, ind, arr){
+    if(!done && el === "^"){
+      splice_count += 1;
+    } else {
+      done = true;
+    }
+  });
+  prePatternArr.splice(0, splice_count);
+  // Set it forward again
+  prePatternArr.reverse();
+
   var pattern = prePatternArr.join("-").replace(/\^/g, "[\\wəēīȯᵊüāäōœˈˌ]+");
   var regExPattern = new RegExp(pattern);
   var syl_count = pattern.split("-").length;
   function rhyme(word){
     word.exacts.forEach(function(ex_el, ex_ind, ex_arr){
-      var ex_arr = ex_el.split("-");
+      var ex_syl_arr = ex_el.split("-");
       var subString = "";
-      ex_arr.forEach(function(ex_syl, ex_ind, ex_arr){
-        if(ex_arr.length - ex_ind <= syl_count){
-          subString += ex_syl;
+      ex_syl_arr.forEach(function(ex_syl_el, ex_syl_ind, ex_syl_arr){
+        if(ex_syl_arr.length - ex_syl_ind <= syl_count){
+          subString += ex_syl_el;
           subString += "-"
         }
       });
