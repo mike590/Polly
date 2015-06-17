@@ -57,19 +57,21 @@ function completeMatchRhyme(patternArr){
 function splitMatchRhyme(sylArr){
   var rhymes = [];
   sylArr.forEach(function(syl_ex){
-    var tempSylArr = [];
-    doc.forEach(function(word){
-      word.exacts.forEach(function(word_ex){
-        if(word_ex.split("-").length === 1 && word_ex === syl_ex){
-          tempSylArr.push(word.word);
-        }
+    if(syl_ex !== "^"){
+      var tempSylArr = [];
+      doc.forEach(function(word){
+        word.exacts.forEach(function(word_ex){
+          if(word_ex.split("-").length === 1 && word_ex === syl_ex){
+            tempSylArr.push(word.word);
+          }
+        });
       });
-    });
-    // get rid of uniques in tempSylArr
-    if(tempSylArr.length === 0){
-      tempSylArr.push("-");
+      // get rid of uniques in tempSylArr
+      if(tempSylArr.length === 0){
+        tempSylArr.push("Nothing Found");
+      }
+      rhymes.push(tempSylArr);
     }
-    rhymes.push(tempSylArr);
   });
   return rhymes;
 }

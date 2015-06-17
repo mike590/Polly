@@ -20,6 +20,21 @@ ul {
   border-radius: 10px;
 }
 
+#split_match {
+  margin-top: 10px;
+  background-color: red;
+  border-radius: 10px;
+}
+
+#top_syls {
+  font-size: 40px;
+}
+
+.split_singles {
+  font-size: 25px;
+  margin-left: -40px;
+}
+
 .jumbotron {
   background-color: #3E9CFA;
 }
