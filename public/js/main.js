@@ -13,10 +13,10 @@ app.factory('rhymer', ["$http", function($http){
     usableSyls: 0,
     pronunciations: [],
     selectedPronIndex: 1,
-    helpProns: true,
-    helpSyls: true,
-    helpWholeMatch: true,
-    helpSplitMatch: true,
+    helpProns: false,
+    helpSyls: false,
+    helpWholeMatch: false,
+    helpSplitMatch: false,
     closeHelp: function(index){
       var helps = ["helpProns", "helpSyls", "helpWholeMatch", "helpSplitMatch"];
       rhymer[helps[index]] = false;
