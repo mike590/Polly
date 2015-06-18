@@ -15,7 +15,7 @@
     <div class="col-xs-9">
       <div class="input-group col-xs-8 col-xs-offset-2">
         <input  type="text" class="form-control input-lg" placeholder="Type a Rhyme" ng-model="rhyme" id='rhyme_input' autofocus>
-        <span class="input-group-addon" ng-click="rhymer.getProns(rhyme)" id="break_syllables">Rhyme</span>
+        <span class="input-group-addon hand" ng-click="rhymer.getProns(rhyme)" id="break_syllables">Rhyme</span>
       </div>
       <div id='vert_pad_5'></div>
       <div class="row">
@@ -24,11 +24,11 @@
       <div id='vert_pad_5' ng-show="rhymer.helpProns && rhymer.pronunciations.length > 2"></div>
       <div ng-show='rhymer.pronunciations.length > 2' class='col-xs-12'>
         <ul id='pron_list'>
-          <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.clickPron(pron)'>{{ pron.text }}</li>
+          <li ng-repeat='pron in rhymer.pronunciations' ng-click='rhymer.clickPron(pron, $index)' class="pronunciation hand">{{ pron.text }}</li>
         </ul>
       </div>
       <div id='vert_pad_5' ng-show="rhymer.pronunciations.length > 2"></div>
     </div>
-    <div class="col-xs-2 help" ng-click="refreshHelp()">Click here for guidance</div>
+    <div class="col-xs-2 help hand" ng-click="refreshHelp()">Click here for guidance</div>
   </div>
 </div>

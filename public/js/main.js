@@ -12,6 +12,7 @@ app.factory('rhymer', ["$http", function($http){
     syls: [{text: "Enter", disabled: true}, {text: "a", disabled: true}, {text: "word", disabled: true}],
     usableSyls: 0,
     pronunciations: [],
+    selectedPronIndex: 1,
     helpProns: true,
     helpSyls: true,
     helpWholeMatch: true,
@@ -20,11 +21,19 @@ app.factory('rhymer', ["$http", function($http){
       var helps = ["helpProns", "helpSyls", "helpWholeMatch", "helpSplitMatch"];
       rhymer[helps[index]] = false;
     },
-    clickPron: function(pron){
+    clickPron: function(pron, index){
       if(pron.exact){
+        rhymer.selectedPronIndex = index;
         rhymer.helpProns = false;
         rhymer.selectPron(pron);
       }
+    },
+    highlightPron: function(){
+      var prons = document.querySelectorAll("#pron_list li");
+      for(i = 0; i < prons.length; ++i){
+        prons[i].id = "";
+      }
+      prons[rhymer.selectedPronIndex].id = "highlight";
     },
     selectPron: function(pron){
       if(pron.token){
@@ -69,7 +78,7 @@ app.factory('rhymer', ["$http", function($http){
       });
       return pattern;
     },
-    getRhymes: function(){
+    getRhymes: function(index){
       var pattern = rhymer.compilePattern();
       var url = '/rhyme/' + pattern;
       $http.get(url).
@@ -81,6 +90,7 @@ app.factory('rhymer', ["$http", function($http){
         });
         rhymer.cMRhymes = data.completeMatch;
         rhymer.splitRhymes = data.splitMatch;
+        rhymer.highlightPron();
       }).
       error(function(data) {});
     },
@@ -138,7 +148,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
           syl.use = !syl.use;
           var syl_dom = document.getElementById("syl" + index)
           new_class = syl.use ? "use" : "dont"
-          syl_dom.className = new_class;
+          syl_dom.className = new_class + " hand";
           rhymer.getRhymes();
         }
       };

@@ -21,6 +21,10 @@ li {
   text-align: center;
 }
 
+.hand {
+  cursor: pointer;
+}
+
 #jumbo {
   padding-top: 0px;
   margin-top: 10px;
@@ -166,14 +170,24 @@ li {
   font-weight: bold;
 }
 
-#pron_list li {
-  background-color: #94FFFD;
+
+
+.pronunciation {
+  box-shadow: 3px 7px 5px black;
+  background-color: #5CF3E0;
+  color: #40AF0F;
   border-radius: 10px;
   height: 100%;
   font: 25px arial;
   padding: 5px;
   margin: 5px 10px;
   display: inline;
+}
+
+#highlight {
+  background-color: #27AF0F;
+  color: #5CF3E0;
+  font-weight: bold;
 }
 
 #pron_list li:first-child {
@@ -210,6 +224,7 @@ li {
   font-weight: bold;
   float: right;
   font-size: 25px;
+  cursor: pointer;
 }
 
 #vert_pad_5 {
