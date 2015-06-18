@@ -122,6 +122,10 @@ app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
         }
       });
 
+      document.getElementById('rhyme_input').addEventListener('click', function(e){
+        document.getElementById('rhyme_input').select();
+      });
+
       scope.refreshHelp = function(){
         rhymer.helpProns = true;
         rhymer.helpSyls = true;
