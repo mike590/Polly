@@ -60,6 +60,7 @@ app.factory('rhymer', ["$http", function($http){
       $http.get(url).
       success(function(data) {
         rhymer.pronunciations = data.list;
+        rhymer.selectedPronIndex = 1;
         rhymer.selectPron(data.list[1]);
       }).
       error(function(data) {});
