@@ -11,6 +11,13 @@ doc = JSON.parse(f)
 @con_combos = ["ch", "hw", "sh", "th", "zh"] 
 @hybrids = ["ər", "är", "au", "er", "ir", "ȯi", "ȯr", "ur", 'ȯi']
 
+
+doc.each do |word|
+  if word["word"][0] == "-" || word["word"][0] == "'" || word["word"][-1] == "'"
+    del_arr.push(word)
+  end
+end
+
 def find(str)
   matches = []
   @list.each do |obj|
