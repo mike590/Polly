@@ -83,7 +83,7 @@ def push_word(node, index)
   end
 end
 start = Time.new
-# Iterate through the word_arr, calling the dictionary api for each word to load it and its pronunciation into the list variablr
+# Iterate through the word_arr, calling the dictionary api for each word to load it and its pronunciation into the list variable
 850.times do |count|
   if !word_arr.empty?
 
@@ -127,7 +127,7 @@ end
 puts Time.new - start
 current_state = {list: @list, words_left: word_arr}
 
-f = File.open("parses/seventhparseraw.json", "w") do |k|
+f = File.open("parses/eigthparseraw.json", "w") do |k|
   k.write(current_state.to_json)
 end
 
