@@ -24,7 +24,7 @@ app.factory('rhymer', ["$http", function($http){
     clickPron: function(pron, index){
       if(pron.exact){
         rhymer.selectedPronIndex = index;
-        rhymer.helpProns = false;
+        // rhymer.helpProns = false;
         rhymer.selectPron(pron);
       }
     },
@@ -113,7 +113,7 @@ app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
     link: function(scope, elem, attr){
 
       scope.rhymer = rhymer;
-      scope.rhyme = "thrill";
+      scope.rhyme = "vice";
 
       // press enter on text field should send data
       document.getElementById('rhyme_input').addEventListener('keydown', function(e){
@@ -131,7 +131,7 @@ app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
         rhymer.helpSyls = true;
         rhymer.helpWholeMatch = true;
         rhymer.helpSplitMatch = true;
-        scope.rhyme = "guidance";
+        scope.rhyme = "read";
         rhymer.getProns(scope.rhyme);
       };
 
@@ -147,11 +147,11 @@ app.directive("sylselect", ['rhymer', function(rhymer){
     replace: true,
     templateUrl: "sylselect.html",
     link: function(scope, elem, attr){
-      
+
       scope.clickSyl = function(index){
         var syl = scope.rhymer.syls[index];
         if(syl.disabled != true && (rhymer.usableSyls != 1 || !syl.use)){
-          rhymer.helpSyls = false;
+          // rhymer.helpSyls = false;
           // Alternate syl class and property
           syl.use = !syl.use;
           var syl_dom = document.getElementById("syl" + index)
@@ -162,7 +162,7 @@ app.directive("sylselect", ['rhymer', function(rhymer){
       };
 
       scope.rhymer = rhymer;
-      
+
     }
   }
 }]);
