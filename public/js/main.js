@@ -131,7 +131,7 @@ app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
         rhymer.helpSyls = true;
         rhymer.helpWholeMatch = true;
         rhymer.helpSplitMatch = true;
-        scope.rhyme = "read";
+        scope.rhyme = "graduate";
         rhymer.getProns(scope.rhyme);
       };
 
