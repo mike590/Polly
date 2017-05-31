@@ -65,10 +65,12 @@ function completeMatchRhyme(patternArr){
   doc.forEach(function(w_el, w_ind, w_arr){
     rhyme(w_el);
   });
-  var uniqueRhymes = rhymes.filter(function(elem, pos) {
-    return rhymes.indexOf(elem) == pos;
-  }); 
-  return rhymes.sort();
+  function remove_duplicates(arr){
+    return arr.filter(function (value, index, self) {
+      return self.indexOf(value) === index;
+    });
+  };
+  return remove_duplicates(rhymes).sort();
 }
 
 function splitMatchRhyme(sylArr){
@@ -90,7 +92,12 @@ function splitMatchRhyme(sylArr){
       rhymes.push(tempSylArr.sort());
     }
   });
-  return rhymes;
+  function remove_duplicates(arr){
+    return arr.filter(function (value, index, self) {
+      return self.indexOf(value) === index;
+    });
+  };
+  return remove_duplicates(rhymes).sort();
 }
 
 
