@@ -113,7 +113,7 @@ app.directive("searcher", ["$http", "rhymer", function($http, rhymer){
     link: function(scope, elem, attr){
 
       scope.rhymer = rhymer;
-      scope.rhyme = "vice";
+      scope.rhyme = "read";
 
       // press enter on text field should send data
       document.getElementById('rhyme_input').addEventListener('keydown', function(e){
